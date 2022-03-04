@@ -1,6 +1,7 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import SimpleLayout from "../../layouts/simple.layout";
 
 import CertificateImg from "../../public/certificate.png";
@@ -20,42 +21,14 @@ const Chip = ({ text }: { text: string }) => {
 
 function CertificateView() {
   return (
-    <div>
+    <div className="pt-2 px-2 lg:px-0">
       <Certificate />
-      <Actions />
-      <div className="mt-10 flex gap-5">
-        <Brand />
-        <div>
-          <div className="mb-6">
-            <h5 className="font-bold text-gray-500">Skills gained</h5>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {["Thinking", "Dancing", "Management"].map((skill) => {
-                return <Chip key={skill} text={skill} />;
-              })}
-            </div>
-          </div>
-
-          <div className="mb-6">
-            <h5 className="font-bold text-gray-500">Remarks</h5>
-            <p className="mt-2">
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-            </p>
-          </div>
-
-          <div className="mb-6">
-            <h5 className="font-bold text-gray-500">Event Name</h5>
-            <p className="text-sm text-gray-500">Field Event</p>
-            <p className="mt-2">
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-            </p>
-          </div>
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="md:col-span-2 grid gap-10">
+          <Actions />
+          <Overview />
         </div>
+        <Brand />
       </div>
     </div>
   );
@@ -111,7 +84,7 @@ const Certificate = () => {
 
 const Actions = () => {
   return (
-    <div className="flex items-center justify-between mt-10 bg-white p-4 rounded shadow">
+    <div className="flex items-center justify-between bg-white p-4 rounded shadow">
       <div>
         <h5 className="font-bold text-gray-500">Share</h5>
         <div className="flex gap-2 mt-2">
@@ -131,7 +104,21 @@ const Actions = () => {
         <h5 className="font-bold text-gray-500">More</h5>
         <div className="flex gap-2 mt-2">
           <Link href="">
-            <a>Contact Issuer</a>
+            <a
+              target="_blank"
+              className="flex items-center gap-2 hover:underline"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="gray"
+              >
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <p>Contact Issuer</p>
+            </a>
           </Link>
         </div>
       </div>
@@ -141,7 +128,7 @@ const Actions = () => {
 
 const Brand = () => {
   return (
-    <div className="bg-white rounded shadow">
+    <div className="bg-white rounded shadow grid grid-cols-2 md:grid-cols-1">
       <Image
         src={Logo}
         alt="brand logo"
@@ -159,7 +146,26 @@ const Brand = () => {
             <Image src={Youtube} width={25} height={25} />
           </div>
           <Link href="">
-            <a>driflys.com</a>
+            <a
+              target="_blank"
+              className="flex items-center gap-2 text-blue-500 hover:underline"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+              <p>driflys.com</p>
+            </a>
           </Link>
         </div>
         <p className="mt-4 text-justify text-sm text-gray-500">
@@ -170,5 +176,43 @@ const Brand = () => {
         </p>
       </div>
     </div>
+  );
+};
+
+const Overview = () => {
+  return (
+    <>
+      <div>
+        <div className="mb-6">
+          <h5 className="font-bold text-gray-500">Skills gained</h5>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {["Thinking", "Dancing", "Management"].map((skill) => {
+              return <Chip key={skill} text={skill} />;
+            })}
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <h5 className="font-bold text-gray-500">Remarks</h5>
+          <p className="mt-2">
+            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+          </p>
+        </div>
+
+        <div className="mb-6">
+          <h5 className="font-bold text-gray-500">Event Name</h5>
+          <p className="text-sm text-gray-500">Field Event</p>
+          <p className="mt-2">
+            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
