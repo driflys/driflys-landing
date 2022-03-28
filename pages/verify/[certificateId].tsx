@@ -1,20 +1,33 @@
+// react
+import { useEffect, useState } from "react";
+
 // next
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import axiosInstance from "../../config/axios";
+
+// constants
 import { NO_IMAGE, SOCIAL_MEDIA_IMAGES } from "../../constants";
-import { API_BASE_URL } from "../../constants/env";
 
 import SimpleLayout from "../../layouts/simple.layout";
 
-import CertificateImg from "../../public/certificate.png";
-import Logo from "../../public/logoHorizontal.png";
-
-import Facebook from "../../public/socialMedias/facebook.svg";
-import Twitter from "../../public/socialMedias/twitter.svg";
-import Youtube from "../../public/socialMedias/youtube.svg";
 import { formatDate } from "../../utils";
+
+// react-share
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
+
+import Page from "../../components/Page";
 
 const Chip = ({ text }: { text: string }) => {
   return (
@@ -24,37 +37,47 @@ const Chip = ({ text }: { text: string }) => {
   );
 };
 
-function CertificateView({ certificate, event, brand }: any) {
-  console.log("Certificate", certificate);
-  console.log("Event", event);
-  console.log("Brand", brand);
+function CertificateView({ certificate, event, brand, issuer }: any) {
+  const [url, setUrl] = useState("https://driflys.com");
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, []);
+
   return (
-    <div className="pt-2 px-2 pb-10 lg:px-0">
-      <Certificate
-        id={certificate?.id}
-        image={certificate?.media?.image}
-        name={certificate?.receiver?.name}
-        issued={certificate?.createdAt}
-      />
-      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="md:col-span-2 grid gap-10">
-          <Actions />
-          <Overview
-            event={event}
-            skillsGained={certificate?.gainedSkills}
-            remarks={certificate?.remarks}
+    <Page title={`${certificate?.receiver?.name} | ${event.name} - Driflys`}>
+      <div className="pt-20 px-2 pb-10 lg:px-0">
+        <Certificate
+          id={certificate?.id}
+          image={certificate?.media?.image}
+          name={certificate?.receiver?.name}
+          issued={certificate?.createdAt}
+        />
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="md:col-span-2 grid gap-10">
+            <Actions
+              pageUrl={url}
+              png={certificate?.media?.image}
+              pdf={certificate?.media?.pdf}
+              issuerEmail={issuer?.email}
+            />
+            <Overview
+              event={event}
+              skillsGained={certificate?.gainedSkills}
+              remarks={certificate?.remarks}
+            />
+          </div>
+          <Brand
+            name={brand?.name}
+            type={brand?.type}
+            profitType={brand?.profitType}
+            logo={brand?.logoUrl}
+            web={brand?.webUrl}
+            socialMedias={brand?.socialMedias}
           />
         </div>
-        <Brand
-          name={brand?.name}
-          type={brand?.type}
-          profitType={brand?.profitType}
-          logo={brand?.logoUrl}
-          web={brand?.webUrl}
-          socialMedias={brand?.socialMedias}
-        />
       </div>
-    </div>
+    </Page>
   );
 }
 
@@ -115,32 +138,81 @@ const Certificate = ({
   );
 };
 
-const Actions = () => {
+const Actions = ({
+  pageUrl,
+  png,
+  pdf,
+  issuerEmail,
+}: {
+  pageUrl: string;
+  png: string;
+  pdf: string;
+  issuerEmail: string;
+}) => {
+  const SHARE_ICON_SIZE = 24;
+
+  const handleDownloadPNG = () => {
+    const link = document.createElement("a");
+    link.href = png;
+    link.setAttribute("download", "certificate.png");
+    link.setAttribute("target", "_blank");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
+  const handleDownloadPDF = () => {
+    const link = document.createElement("a");
+    link.href = pdf;
+    link.setAttribute("download", "certificate.pdf");
+    link.setAttribute("target", "_blank");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
+  const renderShareOptions = (
+    <div className="space-x-2">
+      <LinkedinShareButton url={pageUrl}>
+        <LinkedinIcon size={SHARE_ICON_SIZE} round />
+      </LinkedinShareButton>
+
+      <TwitterShareButton url={pageUrl}>
+        <TwitterIcon size={SHARE_ICON_SIZE} round />
+      </TwitterShareButton>
+
+      <FacebookShareButton url={pageUrl}>
+        <FacebookIcon size={SHARE_ICON_SIZE} round />
+      </FacebookShareButton>
+
+      <WhatsappShareButton url={pageUrl}>
+        <WhatsappIcon size={SHARE_ICON_SIZE} round />
+      </WhatsappShareButton>
+    </div>
+  );
+
   return (
     <div className="flex items-center justify-between bg-white p-4 rounded shadow">
       <div>
         <h5 className="font-bold text-gray-500">Share</h5>
-        <div className="flex gap-2 mt-2">
-          <Image src={Facebook} width={25} height={25} />
-          <Image src={Twitter} width={25} height={25} />
-          <Image src={Youtube} width={25} height={25} />
-        </div>
+        <div className="mt-2">{renderShareOptions}</div>
       </div>
       <div>
         <h5 className="font-bold text-gray-500">Download</h5>
         <div className="flex gap-8 mt-2">
-          <button className="text-blue-500">PNG</button>
-          <button className="text-blue-500">PDF</button>
+          <button onClick={handleDownloadPNG}>PNG</button>
+          <button onClick={handleDownloadPDF}>PDF</button>
         </div>
       </div>
       <div>
         <h5 className="font-bold text-gray-500">More</h5>
         <div className="flex gap-2 mt-2">
-          <Link href="">
-            <a
-              target="_blank"
-              className="flex items-center gap-2 hover:underline"
-            >
+          <Link
+            href={`mailto:${issuerEmail}?subject=${
+              encodeURIComponent("Subject") || ""
+            }&body=${encodeURIComponent("Body") || ""}`}
+          >
+            <a className="flex items-center gap-2 hover:underline">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -181,6 +253,7 @@ const Brand = ({
       case "FACEBOOK":
         return (
           <SocialMedia
+            key={name}
             name={name}
             url={url}
             image={SOCIAL_MEDIA_IMAGES.facebook}
@@ -190,6 +263,7 @@ const Brand = ({
       case "TWITTER":
         return (
           <SocialMedia
+            key={name}
             name={name}
             url={url}
             image={SOCIAL_MEDIA_IMAGES.twitter}
@@ -199,6 +273,7 @@ const Brand = ({
       case "INSTAGRAM":
         return (
           <SocialMedia
+            key={name}
             name={name}
             url={url}
             image={SOCIAL_MEDIA_IMAGES.instagram}
@@ -208,6 +283,7 @@ const Brand = ({
       case "YOUTUBE":
         return (
           <SocialMedia
+            key={name}
             name={name}
             url={url}
             image={SOCIAL_MEDIA_IMAGES.youtube}
@@ -217,6 +293,7 @@ const Brand = ({
       case "LINKEDIN":
         return (
           <SocialMedia
+            key={name}
             name={name}
             url={url}
             image={SOCIAL_MEDIA_IMAGES.linkedIn}
@@ -230,9 +307,9 @@ const Brand = ({
       <Image
         src={logo || NO_IMAGE}
         alt="brand logo"
-        width={300}
-        height={150}
-        objectFit="contain"
+        width={200}
+        height={100}
+        objectFit="scale-down"
       />
       <div className="p-4">
         <h2 className="font-bold text-lg">{name}</h2>
@@ -267,7 +344,11 @@ const Brand = ({
             </a>
           </Link>
         </div>
-        <p className="mt-4 text-justify text-sm text-gray-500">{description}</p>
+        {description && (
+          <p className="mt-4 text-justify text-sm text-gray-500">
+            {description}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -347,21 +428,35 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const brandRes = await axiosInstance.get(
       `/brands/${certificateRes.data?.brandId}`
     );
+    const issuerRes = await axiosInstance.get(
+      `/users/${certificateRes.data?.userId}`
+    );
 
     return {
       props: {
         certificate: certificateRes.data,
         event: eventRes.data,
         brand: brandRes.data,
+        issuer: issuerRes.data,
       },
     };
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
-    return {
-      redirect: {
-        destination: "/verify",
-        permanent: false,
-      },
-    };
+    if (err?.response?.status === 404)
+      return {
+        redirect: {
+          destination: `/verify?error=${encodeURI("Certificate not found")}`,
+          permanent: false,
+        },
+      };
+    if (err?.response?.status === 500)
+      return {
+        redirect: {
+          destination: `/verify?error=${encodeURI(
+            "An error occurred. Please try again later"
+          )}`,
+          permanent: false,
+        },
+      };
   }
 };
