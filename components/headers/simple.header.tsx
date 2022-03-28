@@ -3,11 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { APP_BASE_URL } from "../../constants/env";
+import useSession from "../../hooks/useSession";
 import Logo from "../../public/logos/logo.svg";
 
 function SimpleHeader() {
+  const { user } = useSession();
+
+  const handleDashboard = () => {
+    window.location.href = `${APP_BASE_URL}/`;
+  };
   const handleSignUp = () => {
     window.location.href = `${APP_BASE_URL}/auth/signUp`;
+  };
+  const handleLogin = () => {
+    window.location.href = `${APP_BASE_URL}/auth/login`;
   };
 
   return (
@@ -23,12 +32,29 @@ function SimpleHeader() {
         </Link>
       </div>
       <div className="flex items-center justify-between gap-1">
-        <button
-          className="bg-blue-600 hover:bg-blue-700 transition-colors ease-in-out delay-50 text-white px-5 py-1 rounded"
-          onClick={handleSignUp}
-        >
-          Sign Up
-        </button>
+        {user ? (
+          <button
+            className="text-gray-600 font-bold bg-transparent hover:bg-gray-100 transition-colors ease-in-out delay-50 px-5 py-1 rounded"
+            onClick={handleDashboard}
+          >
+            Dashboard
+          </button>
+        ) : (
+          <>
+            <button
+              className="text-gray-600 font-bold bg-transparent hover:bg-gray-100 transition-colors ease-in-out delay-50 px-5 py-1 rounded"
+              onClick={handleLogin}
+            >
+              Login
+            </button>
+            <button
+              className="bg-blue-600 hover:bg-blue-700 transition-colors ease-in-out delay-50 text-white px-5 py-1 rounded"
+              onClick={handleSignUp}
+            >
+              Sign Up
+            </button>
+          </>
+        )}
       </div>
     </header>
   );
