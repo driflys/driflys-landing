@@ -1,6 +1,10 @@
 // next
+import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import axiosInstance from "../../config/axios";
+import { NO_IMAGE, SOCIAL_MEDIA_IMAGES } from "../../constants";
+import { API_BASE_URL } from "../../constants/env";
 
 import SimpleLayout from "../../layouts/simple.layout";
 
@@ -10,6 +14,7 @@ import Logo from "../../public/logoHorizontal.png";
 import Facebook from "../../public/socialMedias/facebook.svg";
 import Twitter from "../../public/socialMedias/twitter.svg";
 import Youtube from "../../public/socialMedias/youtube.svg";
+import { formatDate } from "../../utils";
 
 const Chip = ({ text }: { text: string }) => {
   return (
@@ -19,16 +24,35 @@ const Chip = ({ text }: { text: string }) => {
   );
 };
 
-function CertificateView() {
+function CertificateView({ certificate, event, brand }: any) {
+  console.log("Certificate", certificate);
+  console.log("Event", event);
+  console.log("Brand", brand);
   return (
-    <div className="pt-2 px-2 lg:px-0">
-      <Certificate />
+    <div className="pt-2 px-2 pb-10 lg:px-0">
+      <Certificate
+        id={certificate?.id}
+        image={certificate?.media?.image}
+        name={certificate?.receiver?.name}
+        issued={certificate?.createdAt}
+      />
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="md:col-span-2 grid gap-10">
           <Actions />
-          <Overview />
+          <Overview
+            event={event}
+            skillsGained={certificate?.gainedSkills}
+            remarks={certificate?.remarks}
+          />
         </div>
-        <Brand />
+        <Brand
+          name={brand?.name}
+          type={brand?.type}
+          profitType={brand?.profitType}
+          logo={brand?.logoUrl}
+          web={brand?.webUrl}
+          socialMedias={brand?.socialMedias}
+        />
       </div>
     </div>
   );
@@ -38,12 +62,22 @@ CertificateView.layout = SimpleLayout;
 
 export default CertificateView;
 
-const Certificate = () => {
+const Certificate = ({
+  id,
+  image,
+  name,
+  issued,
+}: {
+  id: string;
+  image: string;
+  name: string;
+  issued: any;
+}) => {
   return (
     <div className="flex-col justify-center max-w-2xl mt-5 mx-auto">
       <div className="shadow-xl">
         <Image
-          src={CertificateImg}
+          src={image || NO_IMAGE}
           alt="certificate"
           width={800}
           height={500}
@@ -67,16 +101,15 @@ const Certificate = () => {
             />
           </svg>
           <div>
-            <h1 className="font-bold">Tharinda P Anurajeewa</h1>
+            <h1 className="font-bold">{name}</h1>
             <h5 className="text-gray-500 text-sm">
-              Issued On: <span className="text-black">2022/03/12</span>
+              Issued On:
+              <span className="text-black">{formatDate(issued)}</span>
             </h5>
           </div>
         </div>
 
-        <h1 className="font-bold text-blue-600 text-xl tracking-wide">
-          Dgjn5FhF53
-        </h1>
+        <h1 className="font-bold text-blue-600 text-xl tracking-wide">{id}</h1>
       </div>
     </div>
   );
@@ -126,30 +159,97 @@ const Actions = () => {
   );
 };
 
-const Brand = () => {
+const Brand = ({
+  name,
+  type,
+  profitType,
+  description,
+  logo,
+  web,
+  socialMedias,
+}: {
+  name: string;
+  type: string;
+  profitType: string;
+  description?: string;
+  logo?: string;
+  web?: string;
+  socialMedias?: any[];
+}) => {
+  const getSocialMedia = (name: string, url: string) => {
+    switch (name) {
+      case "FACEBOOK":
+        return (
+          <SocialMedia
+            name={name}
+            url={url}
+            image={SOCIAL_MEDIA_IMAGES.facebook}
+          />
+        );
+
+      case "TWITTER":
+        return (
+          <SocialMedia
+            name={name}
+            url={url}
+            image={SOCIAL_MEDIA_IMAGES.twitter}
+          />
+        );
+
+      case "INSTAGRAM":
+        return (
+          <SocialMedia
+            name={name}
+            url={url}
+            image={SOCIAL_MEDIA_IMAGES.instagram}
+          />
+        );
+
+      case "YOUTUBE":
+        return (
+          <SocialMedia
+            name={name}
+            url={url}
+            image={SOCIAL_MEDIA_IMAGES.youtube}
+          />
+        );
+
+      case "LINKEDIN":
+        return (
+          <SocialMedia
+            name={name}
+            url={url}
+            image={SOCIAL_MEDIA_IMAGES.linkedIn}
+          />
+        );
+    }
+  };
+
   return (
     <div className="bg-white rounded shadow grid grid-cols-2 md:grid-cols-1">
       <Image
-        src={Logo}
+        src={logo || NO_IMAGE}
         alt="brand logo"
         width={300}
         height={150}
         objectFit="contain"
       />
       <div className="p-4">
-        <h2 className="font-bold text-lg">Brand Name</h2>
-        <p className="text-sm text-gray-500">Organization</p>
+        <h2 className="font-bold text-lg">{name}</h2>
+        <p className="text-sm text-gray-500">{type}</p>
         <div className="flex items-center justify-between mt-2">
           <div>
-            <Image src={Facebook} width={25} height={25} />
-            <Image src={Twitter} width={25} height={25} />
-            <Image src={Youtube} width={25} height={25} />
+            {socialMedias?.map((media) => {
+              return getSocialMedia(media?.name, media?.url);
+            })}
           </div>
+
           <Link href="">
             <a
               target="_blank"
-              className="flex items-center gap-2 text-blue-500 hover:underline"
+              className="flex items-center gap-1 text-blue-500 hover:underline"
             >
+              <p>{web}</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-4 w-4"
@@ -164,29 +264,49 @@ const Brand = () => {
                   d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                 />
               </svg>
-              <p>driflys.com</p>
             </a>
           </Link>
         </div>
-        <p className="mt-4 text-justify text-sm text-gray-500">
-          {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.`}
-        </p>
+        <p className="mt-4 text-justify text-sm text-gray-500">{description}</p>
       </div>
     </div>
   );
 };
 
-const Overview = () => {
+const SocialMedia = ({
+  name,
+  url,
+  image,
+}: {
+  name: string;
+  url: string;
+  image: any;
+}) => {
+  return (
+    <Link href={url}>
+      <a>
+        <Image src={image || NO_IMAGE} width={25} height={25} alt={name} />
+      </a>
+    </Link>
+  );
+};
+
+const Overview = ({
+  event,
+  remarks,
+  skillsGained,
+}: {
+  event: any;
+  remarks?: string;
+  skillsGained?: string[];
+}) => {
   return (
     <>
       <div>
         <div className="mb-6">
           <h5 className="font-bold text-gray-500">Skills gained</h5>
           <div className="flex flex-wrap gap-2 mt-2">
-            {["Thinking", "Dancing", "Management"].map((skill) => {
+            {skillsGained?.map((skill) => {
               return <Chip key={skill} text={skill} />;
             })}
           </div>
@@ -194,25 +314,54 @@ const Overview = () => {
 
         <div className="mb-6">
           <h5 className="font-bold text-gray-500">Remarks</h5>
-          <p className="mt-2">
-            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-          </p>
+          <p className="mt-2">{remarks}</p>
         </div>
 
         <div className="mb-6">
-          <h5 className="font-bold text-gray-500">Event Name</h5>
-          <p className="text-sm text-gray-500">Field Event</p>
-          <p className="mt-2">
-            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-          </p>
+          <h5 className="font-bold text-gray-500">{event?.name}</h5>
+          <p className="text-sm text-gray-500">{event?.type}</p>
+          <p className="mt-2">{event?.description}</p>
         </div>
       </div>
     </>
   );
+};
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const certificateId = ctx.params?.certificateId;
+  if (!certificateId)
+    return {
+      redirect: {
+        destination: "/verify",
+        permanent: false,
+      },
+    };
+
+  try {
+    const certificateRes = await axiosInstance.get(
+      `/certificates/${certificateId}`
+    );
+    const eventRes = await axiosInstance.get(
+      `/events/${certificateRes.data?.eventId}`
+    );
+    const brandRes = await axiosInstance.get(
+      `/brands/${certificateRes.data?.brandId}`
+    );
+
+    return {
+      props: {
+        certificate: certificateRes.data,
+        event: eventRes.data,
+        brand: brandRes.data,
+      },
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      redirect: {
+        destination: "/verify",
+        permanent: false,
+      },
+    };
+  }
 };
