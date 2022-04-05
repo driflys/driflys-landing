@@ -24,7 +24,11 @@ function Verify() {
 
   const handleVerify = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/verify/[id]`, `/verify/${id}`);
+    if (!id) {
+      toast.error("Please enter your certificate id");
+      return;
+    }
+    router.push(`/certificates/[id]`, `/certificates/${id}`);
   };
 
   return (

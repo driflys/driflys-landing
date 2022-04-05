@@ -43,6 +43,7 @@ function CertificateView({ certificate, event, brand, issuer }: any) {
   useEffect(() => {
     setUrl(window.location.href);
   }, []);
+  // mt-10 grid grid-cols-1 gap-4 auto-cols-min md:grid-cols-3
 
   return (
     <Page title={`${certificate?.receiver?.name} | ${event.name} - Driflys`}>
@@ -53,8 +54,8 @@ function CertificateView({ certificate, event, brand, issuer }: any) {
           name={certificate?.receiver?.name}
           issued={certificate?.createdAt}
         />
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="md:col-span-2 grid gap-10">
+        <div className="mt-8 lg:flex flex-row justify-between gap-2">
+          <div className="flex-1 md:col-span-2 grid gap-10">
             <Actions
               pageUrl={url}
               png={certificate?.media?.image}
@@ -67,14 +68,16 @@ function CertificateView({ certificate, event, brand, issuer }: any) {
               remarks={certificate?.remarks}
             />
           </div>
-          <Brand
-            name={brand?.name}
-            type={brand?.type}
-            profitType={brand?.profitType}
-            logo={brand?.logoUrl}
-            web={brand?.webUrl}
-            socialMedias={brand?.socialMedias}
-          />
+          <div className="w-full lg:w-96">
+            <Brand
+              name={brand?.name}
+              type={brand?.type}
+              profitType={brand?.profitType}
+              logo={brand?.logoUrl}
+              web={brand?.webUrl}
+              socialMedias={brand?.socialMedias}
+            />
+          </div>
         </div>
       </div>
     </Page>
@@ -303,53 +306,61 @@ const Brand = ({
   };
 
   return (
-    <div className="bg-white rounded shadow grid grid-cols-2 md:grid-cols-1">
-      <Image
-        src={logo || NO_IMAGE}
-        alt="brand logo"
-        width={200}
-        height={100}
-        objectFit="scale-down"
-      />
-      <div className="p-4">
-        <h2 className="font-bold text-lg">{name}</h2>
-        <p className="text-sm text-gray-500">{type}</p>
-        <div className="flex items-center justify-between mt-2">
-          <div>
-            {socialMedias?.map((media) => {
-              return getSocialMedia(media?.name, media?.url);
-            })}
-          </div>
-
-          <Link href="">
-            <a
-              target="_blank"
-              className="flex items-center gap-1 text-blue-500 hover:underline"
-            >
-              <p>{web}</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
-          </Link>
+    <div className="bg-white rounded shadow p-4 flex flex-col gap-4">
+      <div className="flex flex-row items-center gap-4">
+        <div className="shadow-md rounded-full w-20 h-20">
+          <Image
+            src={logo || NO_IMAGE}
+            alt="brand logo"
+            width={100}
+            height={100}
+            objectFit="scale-down"
+          />
         </div>
-        {description && (
-          <p className="mt-4 text-justify text-sm text-gray-500">
-            {description}
-          </p>
-        )}
+        <div>
+          <h2 className="font-bold text-lg">{name}</h2>
+          <p className="font-semibold text-xs text-gray-500">{type}</p>
+        </div>
       </div>
+
+      <div className="flex items-center justify-between">
+        <div className="flex flex-row gap-2">
+          {socialMedias?.map((media) => {
+            return getSocialMedia(media?.name, media?.url);
+          })}
+        </div>
+
+        <Link href="">
+          <a
+            target="_blank"
+            className="flex items-center gap-1 text-blue-500 hover:underline"
+          >
+            <p>visit</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        </Link>
+      </div>
+      {description && (
+        <p className="mt-4 text-justify text-sm text-gray-500">{description}</p>
+      )}
+      {/* <p className="text-justify text-sm text-gray-500">
+        Voluptas dolorem reprehenderit vero eos. Rem earum sit sed id odio fugit
+        ducimus quis. Nisi aliquid non dolores ullam quas voluptate aliquam
+        iure.
+      </p> */}
     </div>
   );
 };
