@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { APP_BASE_URL } from "../../constants/env";
+import { env } from "../../constants/env";
 import useSession from "../../hooks/useSession";
 import Logo from "../../public/logos/logo.svg";
 
@@ -10,13 +10,13 @@ function SimpleHeader() {
   const { user } = useSession();
 
   const handleDashboard = () => {
-    window.location.href = `${APP_BASE_URL}/`;
+    window.location.href = `${env.APP_BASE_URL}/`;
   };
   const handleSignUp = () => {
-    window.location.href = `${APP_BASE_URL}/auth/signUp`;
+    window.location.href = `${env.APP_BASE_URL}/auth/signUp`;
   };
   const handleLogin = () => {
-    window.location.href = `${APP_BASE_URL}/auth/login`;
+    window.location.href = `${env.APP_BASE_URL}/auth/login`;
   };
 
   return (
