@@ -15,7 +15,7 @@ import Twitter from "../public/common/socialMedia/color/twitter.svg";
 import FacebookNegative from "../public/common/socialMedia/negative/facebook.svg";
 import InstagramNegative from "../public/common/socialMedia/negative/instagram.svg";
 import YoutubeNegative from "../public/common/socialMedia/negative/youtube.svg";
-import LinkedInNegative from "../public/common/socialMedia/negative/linkedin.svg";
+import LinkedInNegative from "../public/common/socialMedia/negative/linkedIn.svg";
 import TwitterNegative from "../public/common/socialMedia/negative/twitter.svg";
 
 export const common = {
