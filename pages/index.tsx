@@ -1,9 +1,12 @@
 // next
-import type { NextPage } from "next";
+import Image from "next/Image";
+import Link from "next/link";
 
 import Page from "../components/Page";
+import { common } from "../constants";
+import LandingLayout from "../layouts/landing.layout";
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <Page
       title="Driflys"
@@ -14,9 +17,121 @@ const Home: NextPage = () => {
         </>
       }
     >
-      <h1>Welcome to Driflys</h1>
+      <section id="hero" className="relative h-screen">
+        <div className="container flex flex-col justify-center pt-14 lg:pt-28 gap-12 md:items-center md:text-center z-10">
+          <div>
+            <h1 className="font-Exo2 text-4xl md:text-6xl font-bold max-w-2xl">
+              Create design & send{" "}
+              <span className="text-blue-700">certificates</span> hassle freely
+            </h1>
+            <p className="text-lg text-gray-500 tracking-wide mt-4 max-w-2xl">
+              Issue digital certificates, promote your brand by admiring the
+              audience. We can help you.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4 md:flex-row md:w-3/5">
+            <input
+              className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 text-lg"
+              type="email"
+              placeholder="Enter your Email"
+            />
+            <button className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-2 rounded-lg min-w-fit hover:bg-blue-600">
+              Notify Me
+            </button>
+          </div>
+
+          <div className="flex justify-between items-center md:w-96">
+            <SocialIcon
+              href="https://facebook.com"
+              alt="facebook"
+              src={common.socialMedia.color.facebook}
+            />
+            <SocialIcon
+              href="https://twitter.com"
+              alt="twitter"
+              src={common.socialMedia.color.twitter}
+            />
+            <SocialIcon
+              href="https://instagram.com"
+              alt="instagram"
+              src={common.socialMedia.color.instagram}
+            />
+            <SocialIcon
+              href="https://youtube.com"
+              alt="youtube"
+              src={common.socialMedia.color.youtube}
+            />
+            <SocialIcon
+              href="https://linkedin.com"
+              alt="linkedin"
+              src={common.socialMedia.color.linkedIn}
+            />
+          </div>
+        </div>
+        <div className="absolute -bottom-40 -left-20 w-96 h-96 rounded-full bg-blue-700 filter blur-3xl opacity-30 -z-10"></div>
+        <div className="absolute -top-40 -right-20 w-96 h-96 rounded-full bg-slate-800 filter blur-3xl opacity-30 -z-10"></div>
+      </section>
+
+      <section id="contactUs" className="bg-white">
+        <div className="container h-screen flex justify-center items-center content-center">
+          <div className="py-16 px-4 md:px-10 max-w-2xl shadow-xl rounded-xl bg-white">
+            <h1 className="font-bold text-center text-4xl">Get in touch!</h1>
+            <p className="mt-2 font-semibold text-center text-md text-gray-500">
+              Have a comment or feedback? Fill the below form to contact us
+            </p>
+            <form className="mt-8 flex flex-col gap-2">
+              <div className="flex flex-col gap-2 md:flex-row">
+                <input
+                  className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 text-lg"
+                  placeholder="First Name"
+                  type="text"
+                />
+                <input
+                  className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 text-lg"
+                  placeholder="Last Name"
+                  type="text"
+                />
+              </div>
+
+              <input
+                className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 text-lg"
+                placeholder="Email"
+                type="email"
+              />
+              <textarea
+                className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 text-lg"
+                placeholder="Message"
+              />
+              <button className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-2 rounded-lg min-w-fit hover:bg-blue-600">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </Page>
   );
 };
 
+Home.layout = LandingLayout;
+
 export default Home;
+
+const SocialIcon = ({
+  src,
+  alt,
+  href,
+}: {
+  src: string;
+  alt: string;
+  href: string;
+}) => {
+  return (
+    <Link href={href}>
+      <a target="_blank">
+        <Image src={src} alt={alt} width={25} height={25} objectFit="contain" />
+      </a>
+    </Link>
+  );
+};
