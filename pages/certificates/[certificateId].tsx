@@ -9,7 +9,7 @@ import Link from "next/link";
 import axiosInstance from "../../config/axios";
 
 // constants
-import { NO_IMAGE, SOCIAL_MEDIA_IMAGES } from "../../constants";
+import { common } from "../../constants";
 
 import SimpleLayout from "../../layouts/simple.layout";
 
@@ -103,7 +103,7 @@ const Certificate = ({
     <div className="flex-col justify-center max-w-2xl mt-5 mx-auto">
       <div className="shadow-xl">
         <Image
-          src={image || NO_IMAGE}
+          src={image || common.noImage}
           alt="certificate"
           width={800}
           height={500}
@@ -259,7 +259,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={SOCIAL_MEDIA_IMAGES.facebook}
+            image={common.socialMedia.color.facebook}
           />
         );
 
@@ -269,7 +269,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={SOCIAL_MEDIA_IMAGES.twitter}
+            image={common.socialMedia.color.twitter}
           />
         );
 
@@ -279,7 +279,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={SOCIAL_MEDIA_IMAGES.instagram}
+            image={common.socialMedia.color.instagram}
           />
         );
 
@@ -289,7 +289,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={SOCIAL_MEDIA_IMAGES.youtube}
+            image={common.socialMedia.color.youtube}
           />
         );
 
@@ -299,7 +299,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={SOCIAL_MEDIA_IMAGES.linkedIn}
+            image={common.socialMedia.color.linkedIn}
           />
         );
     }
@@ -310,7 +310,7 @@ const Brand = ({
       <div className="flex flex-row items-center gap-4">
         <div className="shadow-md rounded-full w-20 h-20">
           <Image
-            src={logo || NO_IMAGE}
+            src={logo || common.noImage}
             alt="brand logo"
             width={100}
             height={100}
@@ -377,7 +377,12 @@ const SocialMedia = ({
   return (
     <Link href={url}>
       <a>
-        <Image src={image || NO_IMAGE} width={25} height={25} alt={name} />
+        <Image
+          src={image || common.noImage}
+          width={25}
+          height={25}
+          alt={name}
+        />
       </a>
     </Link>
   );

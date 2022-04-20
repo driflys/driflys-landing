@@ -2,21 +2,23 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { APP_BASE_URL } from "../../constants/env";
 import useSession from "../../hooks/useSession";
-import Logo from "../../public/logos/logo.svg";
+
+// constants
+import { common } from "../../constants";
+import { env } from "../../constants/env";
 
 function SimpleHeader() {
   const { user } = useSession();
 
   const handleDashboard = () => {
-    window.location.href = `${APP_BASE_URL}/`;
+    window.location.href = `${env.APP_BASE_URL}/`;
   };
   const handleSignUp = () => {
-    window.location.href = `${APP_BASE_URL}/auth/signUp`;
+    window.location.href = `${env.APP_BASE_URL}/auth/signUp`;
   };
   const handleLogin = () => {
-    window.location.href = `${APP_BASE_URL}/auth/login`;
+    window.location.href = `${env.APP_BASE_URL}/auth/login`;
   };
 
   return (
@@ -25,8 +27,13 @@ function SimpleHeader() {
         <Link href="/">
           <a>
             <div className="flex items-center gap-1">
-              <Image src={Logo} alt="Driflys logo" width={30} height={30} />
-              <h1 className="font-bold text-lg text-sky-500">DRIFLYS</h1>
+              <Image
+                src={common.logoHorizontalNoSlogan}
+                alt="Driflys logo"
+                width={100}
+                height={30}
+              />
+              {/* <h1 className="font-bold text-lg text-sky-500">DRIFLYS</h1> */}
             </div>
           </a>
         </Link>
