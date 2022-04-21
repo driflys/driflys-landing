@@ -12,6 +12,13 @@ import MailIcon from "@heroicons/react/solid/MailIcon";
 import LocationMarkerIcon from "@heroicons/react/solid/LocationMarkerIcon";
 
 function LandingFooter() {
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-white">
       <div className="container grid grid-rows-4 grid-cols-3 md:grid-rows-3 gap-8 py-12 px-12">
@@ -31,13 +38,22 @@ function LandingFooter() {
             <li>
               <h3 className="font-semibold md:text-lg">Links</h3>
             </li>
-            <li className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black">
+            <li
+              className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black"
+              onClick={() => scrollTo("hero")}
+            >
               Home
             </li>
-            <li className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black">
+            <li
+              className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black"
+              onClick={() => scrollTo("features")}
+            >
               Features
             </li>
-            <li className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black">
+            <li
+              className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black"
+              onClick={() => scrollTo("contactUs")}
+            >
               Contact Us
             </li>
           </ul>
