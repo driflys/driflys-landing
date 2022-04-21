@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 // gsap
 import gsap from "gsap";
@@ -15,11 +15,6 @@ import Features from "../components/sections/Features";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const homeRef = useRef(null);
-  const featuresRef = useRef(null);
-  const feature1Ref = useRef(null);
-  const contactRef = useRef(null);
-
   useEffect(() => {
     // gsap.fromTo(
     //   "#hero",

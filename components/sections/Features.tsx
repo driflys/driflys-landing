@@ -62,52 +62,51 @@ function Features() {
     //     duration: 1,
     //     delay: 0.2,
     //   });
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#feature5",
-        },
-      })
-      .from(
-        "#feature5-heading",
-        {
-          x: 200,
-          // opacity: 0,
-          zoom: 2,
-          duration: 1,
-          delay: 0.2,
-        },
-        "+=1"
-      )
-      .from("#feature5-description", {
-        x: -200,
-        opacity: 0,
-        duration: 1,
-        delay: 0.2,
-      })
-      .from(
-        "#feature5-image",
-        {
-          y: -200,
-          zoom: 1.5,
-          opacity: 0,
-          duration: 0.3,
-          delay: 0.2,
-        },
-        "+=1"
-      )
-      .from(
-        "#feature5-divider",
-        {
-          y: 200,
-          zoom: 1.5,
-          opacity: 0,
-          duration: 0.3,
-          // delay: 0.2,
-        },
-        "-=1"
-      );
+    // gsap
+    //   .timeline({
+    //     scrollTrigger: {
+    //       trigger: "#feature5",
+    //     },
+    //   })
+    //   .from(
+    //     "#feature5-heading",
+    //     {
+    //       x: 200,
+    //       // opacity: 0,
+    //       zoom: 2,
+    //       duration: 1,
+    //       delay: 0.2,
+    //     },
+    //     "+=1"
+    //   )
+    //   .from("#feature5-description", {
+    //     x: -200,
+    //     opacity: 0,
+    //     duration: 1,
+    //     delay: 0.2,
+    //   })
+    //   .from(
+    //     "#feature5-image",
+    //     {
+    //       y: -200,
+    //       zoom: 1.5,
+    //       opacity: 0,
+    //       duration: 0.3,
+    //       delay: 0.2,
+    //     },
+    //     "+=1"
+    //   )
+    //   .from(
+    //     "#feature5-divider",
+    //     {
+    //       y: 200,
+    //       zoom: 1.5,
+    //       opacity: 0,
+    //       duration: 0.3,
+    //       // delay: 0.2,
+    //     },
+    //     "-=1"
+    //   );
   }, []);
 
   return (
