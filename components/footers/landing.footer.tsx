@@ -7,7 +7,18 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import { common } from "../../constants";
 
+// icons
+import MailIcon from "@heroicons/react/solid/MailIcon";
+import LocationMarkerIcon from "@heroicons/react/solid/LocationMarkerIcon";
+
 function LandingFooter() {
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-white">
       <div className="container grid grid-rows-4 grid-cols-3 md:grid-rows-3 gap-8 py-12 px-12">
@@ -27,13 +38,22 @@ function LandingFooter() {
             <li>
               <h3 className="font-semibold md:text-lg">Links</h3>
             </li>
-            <li className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black">
+            <li
+              className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black"
+              onClick={() => scrollTo("hero")}
+            >
               Home
             </li>
-            <li className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black">
+            <li
+              className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black"
+              onClick={() => scrollTo("features")}
+            >
               Features
             </li>
-            <li className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black">
+            <li
+              className="cursor-pointer w-fit text-gray-600 md:text-lg hover:text-black"
+              onClick={() => scrollTo("contactUs")}
+            >
               Contact Us
             </li>
           </ul>
@@ -43,30 +63,11 @@ function LandingFooter() {
         <div className="col-start-1 row-start-3 col-span-2 md:col-start-3 md:row-start-2 md:col-span-1 flex md:justify-end">
           <ul className="flex flex-col gap-2">
             <li className="flex flex-row items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
+              <MailIcon className="w-5 h-5 text-gray-800" />
               <p className="text-gray-800">driflys@gmail.com</p>
             </li>
             <li className="flex flex-row items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <LocationMarkerIcon className="w-5 h-5 text-gray-800" />
               <p className="text-gray-800">Matale, Sri Lanka</p>
             </li>
           </ul>

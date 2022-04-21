@@ -15,6 +15,11 @@ import SimpleLayout from "../../layouts/simple.layout";
 
 import { formatDate } from "../../utils";
 
+// icons
+import MailIcon from "@heroicons/react/outline/MailIcon";
+import ExternalLinkIcon from "@heroicons/react/solid/ExternalLinkIcon";
+import UserCircleIcon from "@heroicons/react/solid/UserCircleIcon";
+
 // react-share
 import {
   FacebookIcon,
@@ -114,18 +119,7 @@ const Certificate = ({
 
       <div className="flex items-center justify-between mt-4">
         <div className="flex items-center gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10"
-            viewBox="0 0 20 20"
-            fill="gray"
-          >
-            <path
-              fillRule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <UserCircleIcon className="w-10 h-10 text-gray-600" />
           <div>
             <h1 className="font-bold">{name}</h1>
             <h5 className="text-gray-500 text-sm">
@@ -216,15 +210,7 @@ const Actions = ({
             }&body=${encodeURIComponent("Body") || ""}`}
           >
             <a className="flex items-center gap-2 hover:underline">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="gray"
-              >
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
+              <MailIcon className="w-5 h-5 text-black" />
               <p>Contact Issuer</p>
             </a>
           </Link>
@@ -336,31 +322,13 @@ const Brand = ({
             className="flex items-center gap-1 text-blue-500 hover:underline"
           >
             <p>visit</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
+            <ExternalLinkIcon className="w-5 h-5 text-blue-500" />
           </a>
         </Link>
       </div>
       {description && (
         <p className="mt-4 text-justify text-sm text-gray-500">{description}</p>
       )}
-      {/* <p className="text-justify text-sm text-gray-500">
-        Voluptas dolorem reprehenderit vero eos. Rem earum sit sed id odio fugit
-        ducimus quis. Nisi aliquid non dolores ullam quas voluptate aliquam
-        iure.
-      </p> */}
     </div>
   );
 };

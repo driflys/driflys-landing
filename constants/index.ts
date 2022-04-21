@@ -9,13 +9,13 @@ import NoImage from "../public/common/noImage.jpg";
 import Facebook from "../public/common/socialMedia/color/facebook.svg";
 import Instagram from "../public/common/socialMedia/color/instagram.svg";
 import Youtube from "../public/common/socialMedia/color/youtube.svg";
-import LinkedIn from "../public/common/socialMedia/color/linkedin.svg";
+import LinkedIn from "../public/common/socialMedia/color/linkedIn.svg";
 import Twitter from "../public/common/socialMedia/color/twitter.svg";
 
 import FacebookNegative from "../public/common/socialMedia/negative/facebook.svg";
 import InstagramNegative from "../public/common/socialMedia/negative/instagram.svg";
 import YoutubeNegative from "../public/common/socialMedia/negative/youtube.svg";
-import LinkedInNegative from "../public/common/socialMedia/negative/linkedin.svg";
+import LinkedInNegative from "../public/common/socialMedia/negative/linkedIn.svg";
 import TwitterNegative from "../public/common/socialMedia/negative/twitter.svg";
 
 export const common = {
