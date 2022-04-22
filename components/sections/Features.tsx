@@ -140,7 +140,7 @@ function Features() {
           ref={feature2Ref}
           className="flex flex-col justify-center items-center gap-12 lg:flex-row-reverse lg:justify-between lg:gap-12"
         >
-          <div className="w-2/5 max-w-sm md:w-2/5">
+          <div className="w-3/5 max-w-sm md:w-2/5">
             <Image src={StatusTrack} alt="Status Track" layout="responsive" />
           </div>
 
