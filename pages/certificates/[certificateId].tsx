@@ -77,7 +77,7 @@ function CertificateView({ certificate, event, brand, issuer }: any) {
             <Brand
               name={brand?.name}
               type={brand?.type}
-              profitType={brand?.profitType}
+              industry={brand?.industry}
               logo={brand?.logoUrl}
               web={brand?.webUrl}
               socialMedias={brand?.socialMedias}
@@ -223,7 +223,7 @@ const Actions = ({
 const Brand = ({
   name,
   type,
-  profitType,
+  industry,
   description,
   logo,
   web,
@@ -231,7 +231,7 @@ const Brand = ({
 }: {
   name: string;
   type: string;
-  profitType: string;
+  industry: string;
   description?: string;
   logo?: string;
   web?: string;
