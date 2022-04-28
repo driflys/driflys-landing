@@ -32,6 +32,7 @@ function SimpleHeader() {
                 alt="Driflys logo"
                 width={100}
                 height={30}
+                objectFit="contain"
               />
               {/* <h1 className="font-bold text-lg text-sky-500">DRIFLYS</h1> */}
             </div>
