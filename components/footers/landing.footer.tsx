@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import dayjs from "dayjs";
-import { common } from "../../constants";
+import { brand, common } from "../../constants";
 
 // icons
 import MailIcon from "@heroicons/react/solid/MailIcon";
@@ -76,30 +76,30 @@ function LandingFooter() {
         {/* Social Media */}
         <div className="col-start-3 row-start-1 row-span-4 flex flex-col gap-2 md:justify-end items-end md:items-start md:col-start-3 md:row-start-1 md:row-span-1 md:flex-row">
           <SocialIcon
-            href="https://facebook.com"
+            href={brand.socialMedia.facebook}
             alt="facebook"
             src={common.socialMedia.negative.facebook}
           />
           <SocialIcon
-            href="https://twitter.com"
+            href={brand.socialMedia.twitter}
             alt="twitter"
             src={common.socialMedia.negative.twitter}
           />
           <SocialIcon
-            href="https://instagram.com"
+            href={brand.socialMedia.instagram}
             alt="instagram"
             src={common.socialMedia.negative.instagram}
           />
           <SocialIcon
-            href="https://youtube.com"
+            href={brand.socialMedia.youtube}
             alt="youtube"
             src={common.socialMedia.negative.youtube}
           />
-          <SocialIcon
+          {/* <SocialIcon
             href="https://linkedin.com"
             alt="linkedin"
             src={common.socialMedia.negative.linkedIn}
-          />
+          /> */}
         </div>
 
         {/* Copyright */}

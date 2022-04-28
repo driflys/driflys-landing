@@ -77,7 +77,7 @@ function CertificateView({ certificate, event, brand, issuer }: any) {
             <Brand
               name={brand?.name}
               type={brand?.type}
-              profitType={brand?.profitType}
+              industry={brand?.industry}
               logo={brand?.logoUrl}
               web={brand?.webUrl}
               socialMedias={brand?.socialMedias}
@@ -223,7 +223,7 @@ const Actions = ({
 const Brand = ({
   name,
   type,
-  profitType,
+  industry,
   description,
   logo,
   web,
@@ -231,7 +231,7 @@ const Brand = ({
 }: {
   name: string;
   type: string;
-  profitType: string;
+  industry: string;
   description?: string;
   logo?: string;
   web?: string;
@@ -347,8 +347,8 @@ const SocialMedia = ({
       <a>
         <Image
           src={image || common.noImage}
-          width={25}
-          height={25}
+          width={20}
+          height={20}
           alt={name}
         />
       </a>
@@ -368,19 +368,23 @@ const Overview = ({
   return (
     <>
       <div>
-        <div className="mb-6">
-          <h5 className="font-bold text-gray-500">Skills gained</h5>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {skillsGained?.map((skill) => {
-              return <Chip key={skill} text={skill} />;
-            })}
+        {skillsGained?.length !== 0 && (
+          <div className="mb-6">
+            <h5 className="font-bold text-gray-500">Skills gained</h5>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {skillsGained?.map((skill) => {
+                return <Chip key={skill} text={skill} />;
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="mb-6">
-          <h5 className="font-bold text-gray-500">Remarks</h5>
-          <p className="mt-2">{remarks}</p>
-        </div>
+        {remarks && (
+          <div className="mb-6">
+            <h5 className="font-bold text-gray-500">Remarks</h5>
+            <p className="mt-2">{remarks}</p>
+          </div>
+        )}
 
         <div className="mb-6">
           <h5 className="font-bold text-gray-500">{event?.name}</h5>

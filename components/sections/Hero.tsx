@@ -9,7 +9,7 @@ import * as Yup from "yup";
 // formik
 import { Field, Form, Formik, FormikHelpers } from "formik";
 
-import { common } from "../../constants";
+import { brand, common } from "../../constants";
 
 import axiosInstance from "../../config/axios";
 
@@ -76,7 +76,7 @@ function Hero() {
             <button
               type="submit"
               disabled={loading}
-              className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-2 rounded-lg min-w-fit hover:bg-blue-600"
+              className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-3 rounded-lg min-w-fit hover:bg-blue-600"
             >
               {loading ? "Sending" : "Notify Me"}
             </button>
@@ -85,30 +85,30 @@ function Hero() {
 
         <div className="flex justify-between items-center md:w-96">
           <SocialIcon
-            href="https://facebook.com"
+            href={brand.socialMedia.facebook}
             alt="facebook"
             src={common.socialMedia.color.facebook}
           />
           <SocialIcon
-            href="https://twitter.com"
+            href={brand.socialMedia.twitter}
             alt="twitter"
             src={common.socialMedia.color.twitter}
           />
           <SocialIcon
-            href="https://instagram.com"
+            href={brand.socialMedia.instagram}
             alt="instagram"
             src={common.socialMedia.color.instagram}
           />
           <SocialIcon
-            href="https://youtube.com"
+            href={brand.socialMedia.youtube}
             alt="youtube"
             src={common.socialMedia.color.youtube}
           />
-          <SocialIcon
+          {/* <SocialIcon
             href="https://linkedin.com"
             alt="linkedin"
             src={common.socialMedia.color.linkedIn}
-          />
+          /> */}
         </div>
       </div>
       <div className="absolute -bottom-40 -left-20 w-96 h-96 rounded-full bg-blue-700 filter blur-3xl opacity-30 -z-10"></div>

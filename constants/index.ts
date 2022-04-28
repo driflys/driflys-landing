@@ -40,3 +40,16 @@ export const common = {
     },
   },
 };
+
+export const brand = {
+  name: "Driflys",
+  webUrl: "https://driflys.com",
+  email: "driflys@gmail.com",
+  socialMedia: {
+    facebook: "https://www.facebook.com/Driflys-102061342380414",
+    twitter: "https://twitter.com/driflys",
+    instagram: "https://www.instagram.com/driflys_com",
+    youtube: "https://www.youtube.com/channel/UChNPomLDc6TdOHp50KWwQnA",
+    // linkedIn: "https://www.linkedin.com/company/driflys",
+  },
+};
