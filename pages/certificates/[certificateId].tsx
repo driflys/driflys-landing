@@ -19,6 +19,8 @@ import { formatDate } from "../../utils";
 import MailIcon from "@heroicons/react/outline/MailIcon";
 import ExternalLinkIcon from "@heroicons/react/solid/ExternalLinkIcon";
 import UserCircleIcon from "@heroicons/react/solid/UserCircleIcon";
+import ExclamationCircleIcon from "@heroicons/react/outline/ExclamationCircleIcon";
+import DuplicateIcon from "@heroicons/react/outline/DuplicateIcon";
 
 // react-share
 import {
@@ -34,6 +36,10 @@ import {
 
 import Page from "../../components/Page";
 
+import { toast } from "react-toastify";
+
+import { mapEventType } from "../../utils/mapper";
+
 const Chip = ({ text }: { text: string }) => {
   return (
     <div className="bg-blue-500 text-white rounded-xl w-fit py-1 px-4">
@@ -48,11 +54,17 @@ function CertificateView({ certificate, event, brand, issuer }: any) {
   useEffect(() => {
     setUrl(window.location.href);
   }, []);
-  // mt-10 grid grid-cols-1 gap-4 auto-cols-min md:grid-cols-3
 
   return (
     <Page title={`${certificate?.receiver?.name} | ${event.name} - Driflys`}>
       <div className="pt-20 px-2 pb-10 lg:px-0">
+        {certificate?.state?.isRevoked && (
+          <RevokedBanner
+            revokedReason={certificate?.state?.revokedReason}
+            revokedAt={formatDate(certificate?.state?.revokedAt)}
+          />
+        )}
+
         <Certificate
           id={certificate?.id}
           image={certificate?.media?.image}
@@ -168,23 +180,38 @@ const Actions = ({
     link.remove();
   };
 
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(pageUrl);
+    toast.success("Link copied to clipboard");
+  };
+
   const renderShareOptions = (
-    <div className="space-x-2">
-      <LinkedinShareButton url={pageUrl}>
-        <LinkedinIcon size={SHARE_ICON_SIZE} round />
-      </LinkedinShareButton>
+    <div className="flex flex-col md:flex-row items-center gap-4 sm:flex sm:flex-col">
+      <div className="flex flex-row items-center space-x-2">
+        <LinkedinShareButton url={pageUrl}>
+          <LinkedinIcon size={SHARE_ICON_SIZE} round />
+        </LinkedinShareButton>
 
-      <TwitterShareButton url={pageUrl}>
-        <TwitterIcon size={SHARE_ICON_SIZE} round />
-      </TwitterShareButton>
+        <TwitterShareButton url={pageUrl}>
+          <TwitterIcon size={SHARE_ICON_SIZE} round />
+        </TwitterShareButton>
 
-      <FacebookShareButton url={pageUrl}>
-        <FacebookIcon size={SHARE_ICON_SIZE} round />
-      </FacebookShareButton>
+        <FacebookShareButton url={pageUrl}>
+          <FacebookIcon size={SHARE_ICON_SIZE} round />
+        </FacebookShareButton>
 
-      <WhatsappShareButton url={pageUrl}>
-        <WhatsappIcon size={SHARE_ICON_SIZE} round />
-      </WhatsappShareButton>
+        <WhatsappShareButton url={pageUrl}>
+          <WhatsappIcon size={SHARE_ICON_SIZE} round />
+        </WhatsappShareButton>
+      </div>
+
+      <div
+        className="flex flex-row items-center gap-1 cursor-pointer"
+        onClick={handleCopyLink}
+      >
+        <DuplicateIcon className="w-5 h-5 text-blue-700" />
+        <p className="text-blue-700">Copy link</p>
+      </div>
     </div>
   );
 
@@ -204,11 +231,7 @@ const Actions = ({
       <div>
         <h5 className="font-bold text-gray-500">More</h5>
         <div className="flex gap-2 mt-2">
-          <Link
-            href={`mailto:${issuerEmail}?subject=${
-              encodeURIComponent("Subject") || ""
-            }&body=${encodeURIComponent("Body") || ""}`}
-          >
+          <Link href={`mailto:${issuerEmail}`}>
             <a className="flex items-center gap-2 hover:underline">
               <MailIcon className="w-5 h-5 text-black" />
               <p>Contact Issuer</p>
@@ -316,7 +339,7 @@ const Brand = ({
           })}
         </div>
 
-        <Link href="">
+        <Link href={web || "/"}>
           <a
             target="_blank"
             className="flex items-center gap-1 text-blue-500 hover:underline"
@@ -369,7 +392,7 @@ const Overview = ({
     <>
       <div>
         {skillsGained?.length !== 0 && (
-          <div className="mb-6">
+          <div className="mb-6 px-2">
             <h5 className="font-bold text-gray-500">Skills gained</h5>
             <div className="flex flex-wrap gap-2 mt-2">
               {skillsGained?.map((skill) => {
@@ -380,19 +403,44 @@ const Overview = ({
         )}
 
         {remarks && (
-          <div className="mb-6">
+          <div className="mb-6 px-2">
             <h5 className="font-bold text-gray-500">Remarks</h5>
             <p className="mt-2">{remarks}</p>
           </div>
         )}
 
-        <div className="mb-6">
+        <div className="mb-6 px-2">
           <h5 className="font-bold text-gray-500">{event?.name}</h5>
-          <p className="text-sm text-gray-500">{event?.type}</p>
+          <p className="text-sm text-gray-500">
+            {mapEventType(event?.type, "server-client")}
+          </p>
           <p className="mt-2">{event?.description}</p>
         </div>
       </div>
     </>
+  );
+};
+
+const RevokedBanner = ({
+  revokedReason,
+  revokedAt,
+}: {
+  revokedAt: string;
+  revokedReason: string;
+}) => {
+  return (
+    <div className="bg-red-100 border-l-red-500 border-l-4 py-2 px-2 flex flex-row items-center gap-4">
+      <ExclamationCircleIcon className="hidden md:inline w-6 h-6 text-red-500 sm:hidden" />
+      <div>
+        <h2 className="text-sm font-bold text-gray-600">
+          This certificate has been revoked by the issuer on {revokedAt}
+        </h2>
+        <p className="text-sm text-gray-600">
+          Reason for the revocation:{" "}
+          <span className="text-gray-500">{revokedReason}</span>
+        </p>
+      </div>
+    </div>
   );
 };
 
