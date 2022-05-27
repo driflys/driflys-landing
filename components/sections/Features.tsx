@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import Image from "next/image";
 
@@ -18,95 +18,109 @@ import BrandPromote from "../../public/features/BrandPromote.png";
 gsap.registerPlugin(ScrollTrigger);
 
 function Features() {
-  const feature1Ref = useRef(null);
-  const feature2Ref = useRef(null);
-  const feature3Ref = useRef(null);
-  const feature4Ref = useRef(null);
-  const feature5Ref = useRef(null);
-
   useEffect(() => {
-    // gsap.fromTo(
-    //   feature1Ref.current,
-    //   { x: "-100vw" },
-    //   {
-    //     x: 0,
-    //     duration: 1,
-    //     delay: 0.5,
-    //     // ease: "elastic",
-    //     scrollTrigger: { trigger: feature1Ref.current },
-    //   }
-    // );
-    // const timeline = gsap
-    //   .timeline({
-    //     scrollTrigger: {
-    //       trigger: "#feature1",
-    //     },
-    //   })
-    //   .from("#feature1", {
-    //     opacity: 0,
-    //     duration: 1,
-    //     delay: 0.2,
-    //   })
-    //   .from("#feature2", {
-    //     opacity: 0,
-    //     duration: 1,
-    //     delay: 0.2,
-    //   })
-    //   .from("#feature3", {
-    //     opacity: 0,
-    //     duration: 1,
-    //     delay: 0.2,
-    //   })
-    //   .from("#feature4", {
-    //     opacity: 0,
-    //     duration: 1,
-    //     delay: 0.2,
-    //   });
-    // gsap
-    //   .timeline({
-    //     scrollTrigger: {
-    //       trigger: "#feature5",
-    //     },
-    //   })
-    //   .from(
-    //     "#feature5-heading",
-    //     {
-    //       x: 200,
-    //       // opacity: 0,
-    //       zoom: 2,
-    //       duration: 1,
-    //       delay: 0.2,
-    //     },
-    //     "+=1"
-    //   )
-    //   .from("#feature5-description", {
-    //     x: -200,
-    //     opacity: 0,
-    //     duration: 1,
-    //     delay: 0.2,
-    //   })
-    //   .from(
-    //     "#feature5-image",
-    //     {
-    //       y: -200,
-    //       zoom: 1.5,
-    //       opacity: 0,
-    //       duration: 0.3,
-    //       delay: 0.2,
-    //     },
-    //     "+=1"
-    //   )
-    //   .from(
-    //     "#feature5-divider",
-    //     {
-    //       y: 200,
-    //       zoom: 1.5,
-    //       opacity: 0,
-    //       duration: 0.3,
-    //       // delay: 0.2,
-    //     },
-    //     "-=1"
-    //   );
+    gsap.to("#feature-1", {
+      duration: 3,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#feature-1",
+        start: "-200px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#feature-2", {
+      duration: 3,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#feature-2",
+        start: "-200px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#feature-3", {
+      duration: 3,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#feature-3",
+        start: "-200px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#feature-4", {
+      duration: 3,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#feature-4",
+        start: "-200px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.from("#feature-5-image", {
+      x: 0,
+      opacity: 1,
+      duration: 5,
+      width: "80%",
+      scrollTrigger: {
+        trigger: "#feature-5-content",
+        start: "-350px center",
+        end: "300px center",
+        scrub: 1,
+      },
+    });
+    gsap.to("#feature-5-content", {
+      y: -100,
+      opacity: 0,
+      duration: 5,
+      width: "50%",
+      scrollTrigger: {
+        trigger: "#feature-5-content",
+        start: "-300px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#feature-6-image", {
+      duration: 3,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#feature-6-image",
+        start: "-150px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#feature-6-content", {
+      duration: 3,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#feature-6-content",
+        start: "-350px top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#feature-6-container", {
+      duration: 2.5,
+      opacity: 0,
+      scale: 0.5,
+      scrollTrigger: {
+        trigger: "#feature-6-container",
+        start: "40% top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
   }, []);
 
   return (
@@ -114,8 +128,7 @@ function Features() {
       <div className="container py-20 flex flex-col gap-40 lg:px-20">
         {/* Feature 1 */}
         <div
-          id="feature1"
-          ref={feature1Ref}
+          id="feature-1"
           className="flex flex-col justify-center items-center gap-12 lg:flex-row lg:justify-between lg:gap-12"
         >
           <div className="w-3/4 max-w-lg lg:3/4">
@@ -123,7 +136,10 @@ function Features() {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-4 lg:items-start">
-            <h1 className="font-bold text-center text-4xl lg:text-6xl lg:text-left">
+            <h1
+              id="feature-1-title"
+              className="font-bold text-center text-4xl lg:text-6xl lg:text-left"
+            >
               <span className="text-blue-700">Design</span> certificates the way
               you want
             </h1>
@@ -136,8 +152,7 @@ function Features() {
 
         {/* Feature 2 */}
         <div
-          id="feature2"
-          ref={feature2Ref}
+          id="feature-2"
           className="flex flex-col justify-center items-center gap-12 lg:flex-row-reverse lg:justify-between lg:gap-12"
         >
           <div className="w-3/5 max-w-sm md:w-2/5">
@@ -145,7 +160,10 @@ function Features() {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-4 lg:items-start">
-            <h1 className="font-bold text-center text-4xl lg:text-6xl lg:text-left">
+            <h1
+              id="feature-title"
+              className="font-bold text-center text-4xl lg:text-6xl lg:text-left"
+            >
               Deliver with <span className="text-blue-700">Confident</span>
             </h1>
             <p className="text-gray-500 text-center lg:text-lg lg:text-left md:w-3/4">
@@ -157,8 +175,7 @@ function Features() {
 
         {/* Feature 3 */}
         <div
-          id="feature3"
-          ref={feature3Ref}
+          id="feature-3"
           className="flex flex-col justify-center items-center gap-12 lg:flex-row lg:justify-between lg:gap-12"
         >
           <div className="w-3/4 max-w-xs lg:3/4">
@@ -166,7 +183,10 @@ function Features() {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-4 lg:items-start">
-            <h1 className="font-bold text-center text-4xl lg:text-6xl lg:text-left">
+            <h1
+              id="feature-title"
+              className="font-bold text-center text-4xl lg:text-6xl lg:text-left"
+            >
               <span className="text-blue-700">Verify</span> the validity with
               ease
             </h1>
@@ -179,8 +199,7 @@ function Features() {
 
         {/* Feature 4 */}
         <div
-          id="feature4"
-          ref={feature4Ref}
+          id="feature-4"
           className="flex flex-col justify-center items-center gap-12 lg:flex-row-reverse lg:justify-between lg:gap-12"
         >
           <div className="w-3/4 max-w-xs lg:3/4">
@@ -200,8 +219,11 @@ function Features() {
         </div>
 
         {/* Feature 5 */}
-        <div className="flex flex-col justify-center items-center gap-4 lg:gap-12">
-          <div id="feature5-image" className="w-4/5 md:w-3/5">
+        <div
+          id="feature-5"
+          className="flex flex-col justify-center items-center gap-4 lg:gap-12"
+        >
+          <div id="feature-5-image" className="w-4/5 md:w-3/5">
             <Image
               src={OnlineView}
               alt="Online Certificate View"
@@ -209,8 +231,11 @@ function Features() {
             />
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-8 lg:flex-row-reverse lg:gap-20">
-            <div id="feature5-heading" className="w-4/5 md:w-2/5">
+          <div
+            id="feature-5-content"
+            className="flex flex-col justify-center items-center gap-8 lg:flex-row-reverse lg:gap-20"
+          >
+            <div id="feature-5-heading" className="w-4/5 md:w-2/5">
               <Image
                 src={OnlineViewHeading}
                 alt="View Anywhere Anytime"
@@ -218,11 +243,11 @@ function Features() {
               />
             </div>
             <div
-              id="feature5-divider"
+              id="feature-5-divider"
               className="lg:h-80 lg:w-px lg:bg-gray-500 lg:opacity-60"
             ></div>
             <p
-              id="feature5-description"
+              id="feature-5-description"
               className="text-xl text-gray-500 text-center lg:text-right md:w-1/2"
             >
               We host all the issued certificates via Driflys platform to assure
@@ -231,17 +256,30 @@ function Features() {
           </div>
         </div>
 
-        <div className="container flex justify-center items-center content-center">
-          <div className="py-20 px-4 bg-gradient-to-r from-blue-700 via-blue-900 to-blue-900 rounded-t-3xl flex flex-col justify-center items-center gap-12">
-            <div className="w-2/5 md:1/5">
+        {/* Feature 6 */}
+        <div
+          id="feature-6"
+          className="container flex justify-center items-center content-center"
+        >
+          <div
+            id="feature-6-container"
+            className="py-20 px-4 bg-gradient-to-r from-blue-700 via-blue-900 to-blue-900 rounded-t-3xl flex flex-col justify-center items-center gap-12"
+          >
+            <div id="feature-6-image" className="w-2/5 md:1/5">
               <Image
                 src={BrandPromote}
                 alt="Brand Promote"
                 layout="responsive"
               />
             </div>
-            <div className="flex flex-col justify-center items-center gap-8">
-              <h1 className="text-6xl text-white font-semibold text-center">
+            <div
+              id="feature-6-content"
+              className="flex flex-col justify-center items-center gap-8"
+            >
+              <h1
+                id="feature-6-heading"
+                className="text-6xl text-white font-semibold text-center"
+              >
                 Promote your brand
               </h1>
               <p className="text-lg text-gray-400 text-center md:w-2/3">{`Essential brand details such as logo, name & social media links can be displayed in the certificate view page. 

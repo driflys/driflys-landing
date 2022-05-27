@@ -48,7 +48,7 @@ function ContactUs() {
   };
 
   return (
-    <section id="contactUs" className="bg-white">
+    <section id="contact-us" className="bg-white">
       <div className="container h-screen flex justify-center items-center content-center">
         <div className="py-16 px-4 md:px-10 max-w-2xl shadow-xl rounded-xl bg-white">
           <h1 className="font-bold text-center text-4xl">Get in touch!</h1>

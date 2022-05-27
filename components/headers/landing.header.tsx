@@ -33,8 +33,8 @@ function LandingHeader() {
   };
 
   const menu = (
-    <div className="absolute top-16 left-0 right-0 z-50 bg-gray-50 shadow-lg">
-      <ul className="flex flex-col justify-start">
+    <div className="absolute top-16 left-0 right-0 z-50 bg-white shadow-lg">
+      <ul id="nav-drop-down-menu" className="flex flex-col justify-start">
         <li
           className="cursor-pointer py-2 px-4 hover:text-black hover:bg-gray-100"
           onClick={() => {
@@ -56,7 +56,7 @@ function LandingHeader() {
         <li
           className="cursor-pointer py-2 px-4 hover:text-black hover:bg-gray-100"
           onClick={() => {
-            scrollTo("contactUs");
+            scrollTo("contact-us");
             setOpenMenu(false);
           }}
         >
@@ -68,9 +68,8 @@ function LandingHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 ${
-        scrolled &&
-        "transition ease-in-out delay-75 bg-white shadow-lg duration-300"
+      className={`sticky top-0 z-50 bg-white ${
+        scrolled && "transition ease-in-out delay-75 shadow-lg duration-300"
       }`}
     >
       <nav className="container py-4 flex justify-between items-center">
@@ -101,7 +100,7 @@ function LandingHeader() {
           </li>
           <li
             className="cursor-pointer hover:text-black"
-            onClick={() => scrollTo("contactUs")}
+            onClick={() => scrollTo("contact-us")}
           >
             Contact Us
           </li>
@@ -118,11 +117,6 @@ function LandingHeader() {
           />
         )}
       </nav>
-      <div
-        className={`${
-          scrolled && "hidden"
-        } absolute left-0 top-16 bg-gray-300 w-full h-px`}
-      ></div>
       {openMenu && menu}
     </header>
   );

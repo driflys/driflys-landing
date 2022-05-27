@@ -2,7 +2,6 @@ import React from "react";
 
 // next
 import Image from "next/image";
-import Link from "next/link";
 
 import dayjs from "dayjs";
 import { brand, common } from "../../constants";
@@ -10,6 +9,8 @@ import { brand, common } from "../../constants";
 // icons
 import MailIcon from "@heroicons/react/solid/MailIcon";
 import LocationMarkerIcon from "@heroicons/react/solid/LocationMarkerIcon";
+
+import SocialIcon from "../SocialIcon";
 
 function LandingFooter() {
   const scrollTo = (id: string) => {
@@ -61,7 +62,7 @@ function LandingFooter() {
 
         {/* Email & Location */}
         <div className="col-start-1 row-start-3 col-span-2 md:col-start-3 md:row-start-2 md:col-span-1 flex md:justify-end">
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col items-start md:items-end gap-2">
             <li className="flex flex-row items-center gap-2">
               <MailIcon className="w-5 h-5 text-gray-800" />
               <p className="text-gray-800">driflys@gmail.com</p>
@@ -95,11 +96,11 @@ function LandingFooter() {
             alt="youtube"
             src={common.socialMedia.negative.youtube}
           />
-          {/* <SocialIcon
+          <SocialIcon
             href="https://linkedin.com"
             alt="linkedin"
             src={common.socialMedia.negative.linkedIn}
-          /> */}
+          />
         </div>
 
         {/* Copyright */}
@@ -112,29 +113,3 @@ function LandingFooter() {
 }
 
 export default LandingFooter;
-
-const SocialIcon = ({
-  src,
-  alt,
-  href,
-}: {
-  src: string;
-  alt: string;
-  href: string;
-}) => {
-  return (
-    <Link href={href}>
-      <a target="_blank">
-        <div className="bg-gray-900 hover:bg-gray-800 w-14 h-14 rounded-lg flex justify-center items-center">
-          <Image
-            src={src}
-            alt={alt}
-            width={25}
-            height={25}
-            objectFit="contain"
-          />
-        </div>
-      </a>
-    </Link>
-  );
-};
