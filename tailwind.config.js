@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     fontFamily: {
       Poppins: ["Poppins, sans-serif"],
-      Exo2: ["Exo 2, sans-serif"],
+      Exo: ["Exo, sans-serif"],
     },
     container: {
       center: true,

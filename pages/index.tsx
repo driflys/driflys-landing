@@ -1,9 +1,3 @@
-import { useEffect } from "react";
-
-// gsap
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
-
 import Page from "../components/Page";
 import LandingLayout from "../layouts/landing.layout";
 
@@ -12,21 +6,7 @@ import ContactUs from "../components/sections/ContactUs";
 import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Home = () => {
-  useEffect(() => {
-    // gsap.fromTo(
-    //   "#hero",
-    //   { opacity: 0 },
-    //   {
-    //     opacity: 1,
-    //     duration: 1,
-    //     scrollTrigger: { trigger: feature1Ref.current },
-    //   }
-    // );
-  }, []);
-
   return (
     <Page
       title="Driflys"
