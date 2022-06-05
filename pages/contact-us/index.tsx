@@ -189,7 +189,7 @@ function ContactUs() {
           />
           <meta
             property="og:image"
-            content="https://res.cloudinary.com/driflys/image/upload/v1654450395/logos/Google_SEO.png"
+            content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
           />
 
           {/* Twitter */}
@@ -205,8 +205,11 @@ function ContactUs() {
           />
           <meta
             property="twitter:image"
-            content="https://res.cloudinary.com/driflys/image/upload/v1654450395/logos/Google_SEO.png"
+            content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
           />
+          <meta name="twitter:site" content="@driflys" />
+          <meta name="twitter:creator" content="@driflys" />
+          <meta name="author" content="Driflys" />
         </>
       }
     >
