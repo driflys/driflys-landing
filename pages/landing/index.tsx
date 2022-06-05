@@ -1,11 +1,12 @@
-import Page from "../../components/Page";
+import { GetServerSidePropsContext } from "next";
+
 import LandingLayout from "../../layouts/landing.layout";
 
 // components
+import Page from "../../components/Page";
 import ContactUs from "../../components/sections/ContactUs";
 import Hero from "../../components/sections/Hero";
 import Features from "../../components/sections/Features";
-import { GetServerSidePropsContext } from "next";
 
 const Home = () => {
   return (

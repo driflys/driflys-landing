@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 
 // next
 import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
 
 import SimpleLayout from "../../layouts/simple.layout";
 
@@ -65,3 +66,12 @@ function Verify() {
 Verify.layout = SimpleLayout;
 
 export default Verify;
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    redirect: {
+      destination: "/",
+      permanent: false,
+    },
+  };
+};
