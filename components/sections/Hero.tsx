@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 // gsap
 import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 import * as Yup from "yup";
 
@@ -16,8 +15,6 @@ import { toast } from "react-toastify";
 // components
 import TextField from "../form/TextField";
 
-import LandingImage from "../../public/landingImage.svg";
-
 const initialValues = {
   email: "",
 };
@@ -26,8 +23,6 @@ const validationSchema = Yup.object({
   email: Yup.string().email("Invalid Email").trim().required("Required"),
 });
 
-gsap.registerPlugin(ScrollTrigger);
-
 function Hero() {
   const [loading, setLoading] = useState(false);
 
@@ -35,21 +30,6 @@ function Hero() {
     const tl = gsap.timeline({
       defaults: { ease: "power4.inOut", duration: 2 },
     });
-
-    tl.fromTo(
-      "#hero-image",
-      {
-        clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
-        opacity: 0,
-        y: 0,
-      },
-      {
-        clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
-        opacity: 1,
-        y: -30,
-        duration: 1.6,
-      }
-    );
 
     tl.fromTo(
       "#hero-coming-soon",
@@ -63,8 +43,7 @@ function Hero() {
         opacity: 1,
         y: -30,
         duration: 1.6,
-      },
-      "-=1.5"
+      }
     );
 
     tl.fromTo(
@@ -80,7 +59,7 @@ function Hero() {
         y: -30,
         duration: 2.2,
       },
-      "-=1.5"
+      "-=1.6"
     );
 
     tl.fromTo(
@@ -112,27 +91,6 @@ function Hero() {
       },
       "-=2"
     );
-
-    gsap.to("#hero-left", {
-      opacity: 0,
-      duration: 5,
-      scrollTrigger: {
-        trigger: "#hero-left",
-        start: "5% top",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-
-    gsap.to("#hero-image", {
-      scale: 0.4,
-      scrollTrigger: {
-        trigger: "#hero-image",
-        start: "-50px top",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
   }, []);
 
   const handleSubmit = async (
@@ -160,28 +118,29 @@ function Hero() {
       className="relative h-5/6 bg-white flex flex-col items-center justify-center"
     >
       <div className="container py-14 lg:h-screen flex flex-col items-center justify-center gap-12 md:flex-row-reverse z-10">
-        <div id="hero-image" className="w-96 max-w-lg">
-          <img src={LandingImage.src} alt="landing Image" width="content-fit" />
-        </div>
-        <div id="hero-left">
-          <div
-            id="hero-coming-soon"
-            className="flex flex-row items-center gap-2"
-          >
-            <div className="border-t-2 w-8 border-gray-700" />
-            <h3 className="text-gray-700">Coming Soon</h3>
+        <div className="flex flex-col gap-4">
+          <div>
+            <div
+              id="hero-coming-soon"
+              className="flex flex-row items-center gap-2 w-fit px-4 py-2 mx-auto rounded-md bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+            >
+              <h3 className="text-xs text-white font-bold">Coming Soon</h3>
+            </div>
+            <h1
+              id="hero-title"
+              className="font-Poppins font-extrabold text-center text-4xl max-w-5xl leading-relaxed mt-4 md:leading-snug md:text-6xl"
+            >
+              {`Create design & send`}{" "}
+              <span className="font-Exo font-extrabold text-7xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                certificates
+              </span>{" "}
+              <span className="">hassle freely</span>
+            </h1>
           </div>
-          <h1
-            id="hero-title"
-            className="font-Exo text-4xl font-normal max-w-2xl leading-relaxed mt-4 md:leading-snug md:text-6xl"
-          >
-            {`Create design & send`}{" "}
-            <span className="text-blue-700 font-extrabold">certificates</span>{" "}
-            <span className="font-extrabold">hassle freely</span>
-          </h1>
+
           <p
             id="hero-subtitle"
-            className="text-lg text-gray-500 tracking-wide mt-4 max-w-2xl"
+            className="text-center text-lg text-gray-500 tracking-wide mt-4 max-w-5xl"
           >
             Issue digital certificates, promote your brand by admiring the
             audience. We can help you.
@@ -192,7 +151,7 @@ function Hero() {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              <Form className="flex flex-col justify-between gap-4 mt-8 md:items-start">
+              <Form className="flex flex-col items-cent justify-center gap-4 mt-8 mx-auto max-w-3xl md:items-start md:flex-row">
                 <Field
                   name="email"
                   label="Enter your Email"
