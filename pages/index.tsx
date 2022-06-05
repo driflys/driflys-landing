@@ -1,10 +1,8 @@
-import Page from "../components/Page";
-import LandingLayout from "../layouts/landing.layout";
+import { PreLaunchLayout } from "../layouts";
 
 // components
-import ContactUs from "../components/sections/ContactUs";
+import Page from "../components/Page";
 import Hero from "../components/sections/Hero";
-import Features from "../components/sections/Features";
 
 const Home = () => {
   return (
@@ -19,15 +17,11 @@ const Home = () => {
     >
       <main>
         <Hero />
-
-        <Features />
-
-        <ContactUs />
       </main>
     </Page>
   );
 };
 
-Home.layout = LandingLayout;
+Home.layout = PreLaunchLayout;
 
 export default Home;

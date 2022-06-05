@@ -144,6 +144,13 @@ CertificateView.layout = SimpleLayout;
 export default CertificateView;
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    redirect: {
+      destination: "/",
+      permanent: false,
+    },
+  };
+
   const certificateId = ctx.params?.certificateId;
   if (!certificateId)
     return {
