@@ -50,6 +50,6 @@ export const brand = {
     twitter: "https://twitter.com/driflys",
     instagram: "https://www.instagram.com/driflys_com",
     youtube: "https://www.youtube.com/channel/UChNPomLDc6TdOHp50KWwQnA",
-    // linkedIn: "https://www.linkedin.com/company/driflys",
+    linkedIn: "https://www.linkedin.com/company/81484980/",
   },
 };
