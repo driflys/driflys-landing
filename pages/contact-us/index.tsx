@@ -122,11 +122,11 @@ function ContactUs() {
 
       const recaptchaToken = await recaptchaRef.current?.executeAsync();
       recaptchaRef.current?.reset();
-      const human = await isHuman(recaptchaToken || "");
-      if (!human) {
-        toast.error("An error occurred. Please try again.");
-        return;
-      }
+      // const human = await isHuman(recaptchaToken || "");
+      // if (!human) {
+      //   toast.error("An error occurred. Please try again.");
+      //   return;
+      // }
 
       await axios.post(
         "https://us-central1-driflys-80cfb.cloudfunctions.net/sendContactUsEmail",
@@ -144,20 +144,20 @@ function ContactUs() {
     }
   };
 
-  const isHuman = async (token: string): Promise<boolean> => {
-    try {
-      const res = await axios.post(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${env.RECAPTCHA_SECRET_KEY}&response=${token}`,
-        {
-          token,
-        }
-      );
-      return res.data?.success;
-    } catch (err) {
-      console.error(err);
-      return false;
-    }
-  };
+  // const isHuman = async (token: string): Promise<boolean> => {
+  //   try {
+  //     const res = await axios.post(
+  //       `https://www.google.com/recaptcha/api/siteverify?secret=${env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+  //       {
+  //         token,
+  //       }
+  //     );
+  //     return res.data?.success;
+  //   } catch (err) {
+  //     console.error(err);
+  //     return false;
+  //   }
+  // };
 
   return (
     <Page
