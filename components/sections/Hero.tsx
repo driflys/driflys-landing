@@ -8,12 +8,13 @@ import * as Yup from "yup";
 // formik
 import { Field, Form, Formik, FormikHelpers } from "formik";
 
-import axiosInstance from "../../config/axios";
-
 import { toast } from "react-toastify";
+
+import axios from "axios";
 
 // components
 import TextField from "../form/TextField";
+import Spinner from "../Spinner";
 
 const initialValues = {
   email: "",
@@ -99,7 +100,9 @@ function Hero() {
   ) => {
     try {
       setLoading(true);
-      await axiosInstance.post("/feedbacks/notify-me", values);
+      await axios.post(
+        `https://us-central1-driflys-80cfb.cloudfunctions.net/sendConnectingWithUsEmail?email=${values.email}`
+      );
       actions.resetForm();
       toast.success("Email sent successfully");
     } catch (err) {
@@ -162,6 +165,7 @@ function Hero() {
                   disabled={loading}
                   className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-3 rounded-lg min-w-fit hover:bg-blue-600 transition ease-out delay-150"
                 >
+                  <Spinner loading={loading} />
                   {loading ? "Sending" : "Get my invitation"}
                 </button>
               </Form>

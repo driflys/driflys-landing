@@ -8,9 +8,11 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 // components
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
+import Spinner from "../Spinner";
 
 import { toast } from "react-toastify";
-import axiosInstance from "../../config/axios";
+
+import axios from "axios";
 
 const initialContactUsValues = {
   firstName: "",
@@ -35,7 +37,10 @@ function ContactUs() {
   ) => {
     try {
       setLoading(true);
-      await axiosInstance.post("/feedbacks", values);
+      await axios.post(
+        "https://us-central1-driflys-80cfb.cloudfunctions.net/sendContactUsEmail",
+        values
+      );
       actions.resetForm();
       toast.success("Message sent successfully");
     } catch (err) {
@@ -81,6 +86,7 @@ function ContactUs() {
                 disabled={loading}
                 className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-2 rounded-lg min-w-fit hover:bg-blue-600"
               >
+                <Spinner loading={loading} />
                 {loading ? "Sending" : "Send Message"}
               </button>
             </Form>

@@ -12,7 +12,7 @@ const Home = () => {
         <>
           <meta
             name="description"
-            content="Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature"
+            content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
           />
           <link rel="icon" href="/favicon.ico" />
 
