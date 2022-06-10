@@ -7,6 +7,7 @@ import { PreLaunchLayout } from "../../layouts";
 import Page from "../../components/Page";
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
+import Spinner from "../../components/Spinner";
 
 import * as Yup from "yup";
 
@@ -16,7 +17,6 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import { toast } from "react-toastify";
 
 // axios
-import axiosInstance from "../../config/axios";
 import axios from "axios";
 
 // gsap
@@ -128,7 +128,10 @@ function ContactUs() {
         return;
       }
 
-      await axiosInstance.post("/feedbacks", values);
+      await axios.post(
+        "https://us-central1-driflys-80cfb.cloudfunctions.net/sendContactUsEmail",
+        values
+      );
       actions.resetForm();
       toast.success("Message sent successfully");
     } catch (err) {
@@ -189,7 +192,7 @@ function ContactUs() {
           />
           <meta
             property="og:image"
-            content="https://res.cloudinary.com/driflys/image/upload/v1654450395/logos/Google_SEO.png"
+            content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
           />
 
           {/* Twitter */}
@@ -205,8 +208,11 @@ function ContactUs() {
           />
           <meta
             property="twitter:image"
-            content="https://res.cloudinary.com/driflys/image/upload/v1654450395/logos/Google_SEO.png"
+            content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
           />
+          <meta name="twitter:site" content="@driflys" />
+          <meta name="twitter:creator" content="@driflys" />
+          <meta name="author" content="Driflys" />
         </>
       }
     >
@@ -275,6 +281,7 @@ function ContactUs() {
                   disabled={loading}
                   className="bg-blue-700 text-white font-semibold tracking-wide px-10 py-2 rounded-lg min-w-fit hover:bg-blue-600"
                 >
+                  <Spinner loading={loading} />
                   {loading ? "Sending" : "Send Message"}
                 </button>
               </Form>

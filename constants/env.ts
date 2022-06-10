@@ -10,4 +10,6 @@ export const env = {
 
   RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "",
   RECAPTCHA_SECRET_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY || "",
+
+  GA_ID: process.env.NEXT_PUBLIC_GA_ID || "",
 };
