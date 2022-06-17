@@ -90,7 +90,7 @@ function PreLaunchFooter() {
             src={common.socialMedia.negative.youtube}
           />
           <SocialIcon
-            href="https://linkedin.com"
+            href={brand.socialMedia.linkedIn}
             alt="linkedin"
             src={common.socialMedia.negative.linkedIn}
           />
@@ -98,7 +98,7 @@ function PreLaunchFooter() {
 
         {/* Copyright */}
         <p className="col-start-1 row-start-4 col-span-3 text-center text-gray-600">
-          {dayjs().year()} All Rights Reserved ©️ Driflys Inc.
+          {dayjs().year()} All Rights Reserved ©️ Driflys
         </p>
       </div>
     </footer>
