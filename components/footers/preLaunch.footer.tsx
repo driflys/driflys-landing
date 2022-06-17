@@ -58,11 +58,11 @@ function PreLaunchFooter() {
           <ul className="flex flex-col items-start md:items-end gap-2">
             <li className="flex flex-row items-center gap-2">
               <MailIcon className="w-5 h-5 text-gray-800" />
-              <p className="text-gray-800">driflys@gmail.com</p>
+              <p className="text-gray-800">{brand.email}</p>
             </li>
             <li className="flex flex-row items-center gap-2">
               <LocationMarkerIcon className="w-5 h-5 text-gray-800" />
-              <p className="text-gray-800">Matale, Sri Lanka</p>
+              <p className="text-gray-800">{brand.address}</p>
             </li>
           </ul>
         </div>
