@@ -45,6 +45,7 @@ export const brand = {
   name: "Driflys",
   webUrl: "https://driflys.com",
   email: "contact@driflys.com",
+  address: "Matale, Sri Lanka",
   socialMedia: {
     facebook: "https://www.facebook.com/Driflys-102061342380414",
     twitter: "https://twitter.com/driflys",
