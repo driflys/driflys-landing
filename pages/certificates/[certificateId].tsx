@@ -98,16 +98,19 @@ function CertificateView({ certificate, event }: any) {
         </div>
       </div>
 
-      <div className="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3 gap-4 mt-4 mb-12">
-        <div className="md:col-start-1 md:col-span-2">
-          {certificate?.remarks && <Remarks remarks={certificate?.remarks} />}
-        </div>
+      <div className="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3 gap-4 mt-12 mb-12">
+        {certificate?.remarks && (
+          <div className="md:col-start-1 md:col-span-2">
+            <Remarks remarks={certificate?.remarks} />
+          </div>
+        )}
+
         <div className="md:col-start-3 md:row-span-2">
           <Actions
             url={url}
             image={certificate?.media?.image}
             pdf={certificate?.media?.pdf}
-            issuerEmail={issuer?.email}
+            issuer={issuer}
             certificateName={certificateName}
             certificateDescription={certificateDescription}
             certificateId={certificate?.id}
