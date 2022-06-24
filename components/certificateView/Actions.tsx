@@ -27,7 +27,7 @@ import { getMonth, getYear } from "../../utils";
 
 import { brand } from "../../constants";
 
-const SHARE_ICON_SIZE = 24;
+const SHARE_ICON_SIZE = 36;
 
 interface Props {
   url: string;
@@ -173,7 +173,7 @@ const Actions = ({
           className="flex flex-row items-center justify-center gap-2 w-full py-2 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition ease-linear delay-100"
           onClick={handleAddToLinkedIn}
         >
-          <LinkedinIcon size={SHARE_ICON_SIZE} /> Add to profile
+          <LinkedinIcon size={24} /> Add to profile
         </button>
       </div>
     </div>
