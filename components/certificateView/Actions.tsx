@@ -33,7 +33,7 @@ interface Props {
   url: string;
   image: string;
   pdf: string;
-  issuerEmail: string;
+  issuer: any;
   certificateId: string;
   certificateName: string;
   certificateDescription: string;
@@ -45,7 +45,7 @@ const Actions = ({
   url,
   image,
   pdf,
-  issuerEmail,
+  issuer,
   certificateId,
   certificateName,
   certificateDescription,
@@ -147,7 +147,7 @@ const Actions = ({
       <div>
         <h5 className="font-bold text-gray-500">More</h5>
         <div className="flex gap-2 mt-2">
-          <Link href={`mailto:${issuerEmail}`}>
+          <Link href={`mailto:${issuer?.email}`}>
             <a className="flex items-center gap-2 hover:underline">
               <MailIcon className="w-5 h-5 text-black" />
               <p>Contact Issuer</p>
@@ -169,12 +169,14 @@ const Actions = ({
             </>
           )}
         </button>
-        <button
-          className="flex flex-row items-center justify-center gap-2 w-full py-2 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition ease-linear delay-100"
-          onClick={handleAddToLinkedIn}
-        >
-          <LinkedinIcon size={24} /> Add to profile
-        </button>
+        {issuer?.permissions?.includes("LINKEDIN_CERTIFICATES") && (
+          <button
+            className="flex flex-row items-center justify-center gap-2 w-full py-2 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition ease-linear delay-100"
+            onClick={handleAddToLinkedIn}
+          >
+            <LinkedinIcon size={24} /> Add to profile
+          </button>
+        )}
       </div>
     </div>
   );
