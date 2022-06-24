@@ -47,7 +47,7 @@ export const brand = {
   email: "contact@driflys.com",
   address: "Matale, Sri Lanka",
   socialMedia: {
-    facebook: "https://www.facebook.com/Driflys-102061342380414",
+    facebook: "https://www.facebook.com/driflys",
     twitter: "https://twitter.com/driflys",
     instagram: "https://www.instagram.com/driflys_com",
     youtube: "https://www.youtube.com/channel/UChNPomLDc6TdOHp50KWwQnA",
