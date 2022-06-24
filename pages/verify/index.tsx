@@ -67,11 +67,11 @@ Verify.layout = SimpleLayout;
 
 export default Verify;
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return {
-    redirect: {
-      destination: "/",
-      permanent: false,
-    },
-  };
-};
+// export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+//   return {
+//     redirect: {
+//       destination: "/",
+//       permanent: false,
+//     },
+//   };
+// };
