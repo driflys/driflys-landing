@@ -6,6 +6,9 @@ import ExternalLinkIcon from "@heroicons/react/solid/ExternalLinkIcon";
 
 import { common } from "../../constants";
 
+// react-share
+import { FacebookIcon, LinkedinIcon, TwitterIcon } from "react-share";
+
 interface Props {
   name: string;
   description?: string;
@@ -25,6 +28,11 @@ const Brand = ({
   web,
   socialMedias,
 }: Props) => {
+  const defaultProps = {
+    size: 24,
+    round: true,
+  };
+
   const getSocialMedia = (name: string, url: string) => {
     switch (name) {
       case "FACEBOOK":
@@ -33,7 +41,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={common.socialMedia.color.facebook}
+            image={<FacebookIcon {...defaultProps} />}
           />
         );
 
@@ -43,7 +51,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={common.socialMedia.color.twitter}
+            image={<TwitterIcon {...defaultProps} />}
           />
         );
 
@@ -53,7 +61,14 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={common.socialMedia.color.instagram}
+            image={
+              <Image
+                src={common.socialMedia.color.instagram || common.noImage}
+                width={20}
+                height={20}
+                alt={name}
+              />
+            }
           />
         );
 
@@ -63,7 +78,14 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={common.socialMedia.color.youtube}
+            image={
+              <Image
+                src={common.socialMedia.color.youtube || common.noImage}
+                width={20}
+                height={20}
+                alt={name}
+              />
+            }
           />
         );
 
@@ -73,7 +95,7 @@ const Brand = ({
             key={name}
             name={name}
             url={url}
-            image={common.socialMedia.color.linkedIn}
+            image={<LinkedinIcon {...defaultProps} />}
           />
         );
     }
@@ -98,7 +120,7 @@ const Brand = ({
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row items-center gap-2">
           {socialMedias?.map((media) => {
             return getSocialMedia(media?.name, media?.url);
           })}
@@ -130,18 +152,11 @@ const SocialMedia = ({
 }: {
   name: string;
   url: string;
-  image: any;
+  image: React.ReactNode;
 }) => {
   return (
     <Link href={url}>
-      <a>
-        <Image
-          src={image || common.noImage}
-          width={20}
-          height={20}
-          alt={name}
-        />
-      </a>
+      <a>{image}</a>
     </Link>
   );
 };
