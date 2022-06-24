@@ -11,8 +11,8 @@ import { env } from "../../constants/env";
 function SimpleHeader() {
   const { user } = useSession();
 
-  const handleDashboard = () => {
-    window.location.href = `${env.APP_BASE_URL}/`;
+  const handleVerify = () => {
+    window.location.href = `/verify`;
   };
   const handleSignUp = () => {
     window.location.href = `${env.APP_BASE_URL}/auth/signUp`;
@@ -40,7 +40,13 @@ function SimpleHeader() {
         </Link>
       </div>
       <div className="flex items-center justify-between gap-1">
-        {user ? (
+        <button
+          className="text-gray-600 font-bold bg-transparent border-2 border-gray-500 hover:bg-gray-100 transition-colors ease-in-out delay-50 px-5 py-1 rounded"
+          onClick={handleVerify}
+        >
+          Verify
+        </button>
+        {/* {user ? (
           <button
             className="text-gray-600 font-bold bg-transparent hover:bg-gray-100 transition-colors ease-in-out delay-50 px-5 py-1 rounded"
             onClick={handleDashboard}
@@ -62,7 +68,7 @@ function SimpleHeader() {
               Sign Up
             </button>
           </>
-        )}
+        )} */}
       </div>
     </header>
   );
