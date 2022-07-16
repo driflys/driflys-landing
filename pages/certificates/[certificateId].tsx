@@ -1,57 +1,57 @@
 // react
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 // next
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext } from 'next'
 
-import axiosInstance from "../../config/axios";
+import axiosInstance from '../../config/axios'
 
-import SimpleLayout from "../../layouts/simple.layout";
+import SimpleLayout from '../../layouts/simple.layout'
 
-import { formatDate } from "../../utils";
+import { formatDate } from '../../utils'
 
 // components
-import Page from "../../components/Page";
-import Certificate from "../../components/certificateView/Certificate";
-import Actions from "../../components/certificateView/Actions";
-import Brand from "../../components/certificateView/Brand";
-import Remarks from "../../components/certificateView/Remarks";
-import Skills from "../../components/certificateView/Skills";
-import Event from "../../components/certificateView/Event";
-import RevokedBanner from "../../components/certificateView/RevokedBanner";
+import Page from '../../components/Page'
+import Certificate from '../../components/certificateView/Certificate'
+import Actions from '../../components/certificateView/Actions'
+import Brand from '../../components/certificateView/Brand'
+import Remarks from '../../components/certificateView/Remarks'
+import Skills from '../../components/certificateView/Skills'
+import Event from '../../components/certificateView/Event'
+import RevokedBanner from '../../components/certificateView/RevokedBanner'
 
 function CertificateView({ certificate, event }: any) {
-  const [url, setUrl] = useState("https://driflys.com");
-  const [issuer, setIssuer] = useState<any>({});
-  const [brand, setBrand] = useState<any>({});
+  const [url, setUrl] = useState('https://driflys.com')
+  const [issuer, setIssuer] = useState<any>({})
+  const [brand, setBrand] = useState<any>({})
 
   useEffect(() => {
-    setUrl(window.location.href);
-    fetchIssuer();
-    fetchBrand();
-  }, [certificate]);
+    setUrl(window.location.href)
+    fetchIssuer()
+    fetchBrand()
+  }, [certificate])
 
   const fetchIssuer = async () => {
     try {
-      const res = await axiosInstance.get(`/users/${certificate?.userId}`);
-      setIssuer(res.data);
+      const res = await axiosInstance.get(`/users/${certificate?.userId}`)
+      setIssuer(res.data)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   const fetchBrand = async () => {
     try {
-      const res = await axiosInstance.get(`/brands/${certificate.brandId}`);
-      setBrand(res.data);
+      const res = await axiosInstance.get(`/brands/${certificate.brandId}`)
+      setBrand(res.data)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
-  const certificateName = `${certificate?.receiver?.name}'s certificate for ${event?.name}`;
-  const certificateDescription = `Check out ${certificate?.receiver?.name}'s certificate`;
-  const hashtags = ["driflys", "certificate", "driflys_certificate"];
+  const certificateName = `${certificate?.receiver?.name}'s certificate for ${event?.name}`
+  const certificateDescription = `Check out ${certificate?.receiver?.name}'s certificate`
+  const hashtags = ['driflys', 'certificate', 'driflys_certificate']
 
   return (
     <Page
@@ -139,12 +139,12 @@ function CertificateView({ certificate, event }: any) {
         </div>
       </div>
     </Page>
-  );
+  )
 }
 
-CertificateView.layout = SimpleLayout;
+CertificateView.layout = SimpleLayout
 
-export default CertificateView;
+export default CertificateView
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   // return {
@@ -154,46 +154,46 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   //   },
   // };
 
-  const certificateId = ctx.params?.certificateId;
+  const certificateId = ctx.params?.certificateId
   if (!certificateId)
     return {
       redirect: {
-        destination: "/verify",
+        destination: '/verify',
         permanent: false,
       },
-    };
+    }
 
   try {
     const certificateRes = await axiosInstance.get(
       `/certificates/${certificateId}`
-    );
+    )
     const eventRes = await axiosInstance.get(
       `/events/${certificateRes.data?.eventId}`
-    );
+    )
 
     return {
       props: {
         certificate: certificateRes.data,
         event: eventRes.data,
       },
-    };
+    }
   } catch (err: any) {
-    console.error(err);
+    console.error(err)
     if (err?.response?.status === 404)
       return {
         redirect: {
-          destination: `/verify?error=${encodeURI("Certificate not found")}`,
+          destination: `/verify?error=${encodeURI('Certificate not found')}`,
           permanent: false,
         },
-      };
+      }
     if (err?.response?.status === 500)
       return {
         redirect: {
           destination: `/verify?error=${encodeURI(
-            "An error occurred. Please try again later"
+            'An error occurred. Please try again later'
           )}`,
           permanent: false,
         },
-      };
+      }
   }
-};
+}

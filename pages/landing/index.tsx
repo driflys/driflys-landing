@@ -34,11 +34,11 @@ Home.layout = LandingLayout;
 
 export default Home;
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return {
-    redirect: {
-      destination: "/",
-      permanent: false,
-    },
-  };
-};
+// export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+//   return {
+//     redirect: {
+//       destination: "/",
+//       permanent: false,
+//     },
+//   };
+// };
