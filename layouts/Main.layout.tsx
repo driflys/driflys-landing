@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 // components
-import { MainFooter } from "../components/footers";
-import { MainHeader } from "../components/headers";
+import { MainHeader } from "../components/headers"
+import { MainFooter } from "../components/footers"
 
 function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -11,7 +11,7 @@ function MainLayout({ children }: { children: ReactNode }) {
       <>{children}</>
       <MainFooter />
     </>
-  );
+  )
 }
 
-export default MainLayout;
+export default MainLayout
