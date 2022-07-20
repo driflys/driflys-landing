@@ -1,60 +1,88 @@
-import Head from "next/head";
+import Head from "next/head"
 
-function MetaTags({ title }: { title: string }) {
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta
-        name="description"
-        content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-      />
-      <link rel="icon" href="/favicon.ico" />
+import { brand } from "../constants"
 
-      <meta
-        name="title"
-        content={`Driflys - Create design & send certificates hassle freely`}
-      />
-      <meta
-        name="description"
-        content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-      />
-
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://driflys.com/" />
-      <meta
-        property="og:title"
-        content={`Driflys - Create design & send certificates hassle freely`}
-      />
-      <meta
-        property="og:description"
-        content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-      />
-      <meta
-        property="og:image"
-        content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
-      />
-
-      {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://driflys.com/" />
-      <meta
-        property="twitter:title"
-        content={`Driflys - Create design & send certificates hassle freely`}
-      />
-      <meta
-        property="twitter:description"
-        content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-      />
-      <meta
-        property="twitter:image"
-        content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
-      />
-      <meta name="twitter:site" content="@driflys" />
-      <meta name="twitter:creator" content="@driflys" />
-      <meta name="author" content="Driflys" />
-    </Head>
-  );
+export interface MetaTagProps {
+  pageTitle?: string
+  title?: string
+  description?: string
+  author?: string
+  og?: {
+    type: string
+    url: string
+    title: string
+    description: string
+    image: string
+    alt: string
+  }
+  twitter?: {
+    card: "summary" | "summary_large_image" | "app" | "player"
+    url: string
+    title: string
+    description: string
+    image: string
+    site: string
+    creator: string
+    alt: string
+  }
 }
 
-export default MetaTags;
+const defaultProps: MetaTagProps = {
+  pageTitle: brand.name,
+  title: "Driflys - Create design & send certificates hassle freely",
+  description:
+    "Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature",
+  author: brand.name,
+  og: {
+    type: "website",
+    url: brand.webUrl,
+    title: "Driflys - Create design & send certificates hassle freely",
+    description:
+      "Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature",
+    image: "https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png",
+    alt: "Driflys website social media card image",
+  },
+  twitter: {
+    card: "summary_large_image",
+    url: brand.webUrl,
+    title: "Driflys - Create design & send certificates hassle freely",
+    description:
+      "Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature",
+    image: "https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png",
+    alt: "Driflys website social media card image",
+    site: "@driflys",
+    creator: "@driflys",
+  },
+}
+
+function MetaTags({ title, description, author, og, twitter }: MetaTagProps) {
+  return (
+    <Head>
+      <title>{title || defaultProps.pageTitle}</title>
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="author" content={author || defaultProps.author} />
+      <meta name="title" content={title || defaultProps.title} />
+      <meta name="description" content={description || defaultProps.description} />
+
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content={og?.type || defaultProps.og?.type} />
+      <meta property="og:url" content={og?.url || defaultProps.og?.url} />
+      <meta property="og:title" content={title || defaultProps.og?.title} />
+      <meta property="og:description" content={description || defaultProps.og?.description} />
+      <meta property="og:image" content={og?.image || defaultProps.og?.image} />
+      <meta property="og:image:alt" content={og?.alt || defaultProps.og?.alt} />
+
+      {/* Twitter */}
+      <meta property="twitter:card" content={twitter?.card || defaultProps.twitter?.card} />
+      <meta property="twitter:url" content={twitter?.url || defaultProps.twitter?.url} />
+      <meta property="twitter:title" content={twitter?.title || defaultProps.twitter?.title} />
+      <meta property="twitter:description" content={twitter?.description || defaultProps.twitter?.description} />
+      <meta property="twitter:image" content={twitter?.image || defaultProps.twitter?.image} />
+      <meta property="twitter:image:alt" content={twitter?.alt || defaultProps.twitter?.alt} />
+      <meta name="twitter:site" content={twitter?.site || defaultProps.twitter?.site} />
+      <meta name="twitter:creator" content={twitter?.creator || defaultProps.twitter?.creator} />
+    </Head>
+  )
+}
+
+export default MetaTags
