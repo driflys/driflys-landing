@@ -1,57 +1,57 @@
 // react
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react"
 
-import { PreLaunchLayout } from "../../layouts";
+import { MainLayout } from "../../layouts"
 
 // components
-import Page from "../../components/Page";
-import TextField from "../../components/form/TextField";
-import TextArea from "../../components/form/TextArea";
-import Spinner from "../../components/Spinner";
+import Page from "../../components/Page"
+import TextField from "../../components/form/TextField"
+import TextArea from "../../components/form/TextArea"
+import Spinner from "../../components/Spinner"
 
-import * as Yup from "yup";
+import * as Yup from "yup"
 
 // formik
-import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik"
 
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 
 // axios
-import axios from "axios";
+import axios from "axios"
 
 // gsap
-import gsap from "gsap";
+import gsap from "gsap"
 
 // @ts-ignore
-import Typewriter from "typewriter-effect";
+import Typewriter from "typewriter-effect"
 
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha"
 
 // constants
-import { env } from "../../constants/env";
+import { env } from "../../constants/env"
 
 const initialContactUsValues = {
   firstName: "",
   lastName: "",
   email: "",
   message: "",
-};
+}
 
 const contactUsValidationSchema = Yup.object({
   firstName: Yup.string().trim().required("Required"),
   lastName: Yup.string().trim().required("Required"),
   email: Yup.string().email("Invalid Email").trim().required("Required"),
   message: Yup.string().trim().required("Required"),
-});
+})
 
 function ContactUs() {
-  const [loading, setLoading] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [loading, setLoading] = useState(false)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   useEffect(() => {
     const tl = gsap.timeline({
       defaults: { ease: "power4.inOut", duration: 2 },
-    });
+    })
 
     tl.fromTo(
       "#title",
@@ -66,7 +66,7 @@ function ContactUs() {
         y: -30,
         duration: 1.6,
       }
-    );
+    )
 
     tl.fromTo(
       "#subtitle-1",
@@ -82,7 +82,7 @@ function ContactUs() {
         duration: 2.2,
       },
       "-=1.6"
-    );
+    )
 
     tl.fromTo(
       "#subtitle-2",
@@ -97,7 +97,7 @@ function ContactUs() {
         y: -30,
       },
       "-=2"
-    );
+    )
 
     tl.fromTo(
       "#form",
@@ -110,39 +110,34 @@ function ContactUs() {
         y: 0,
       },
       "-=2.2"
-    );
-  }, []);
+    )
+  }, [])
 
   const handleContactUsSubmit = async (
     values: typeof initialContactUsValues,
     actions: FormikHelpers<typeof initialContactUsValues>
   ) => {
     try {
-      setLoading(true);
+      setLoading(true)
 
-      const recaptchaToken = await recaptchaRef.current?.executeAsync();
-      recaptchaRef.current?.reset();
+      const recaptchaToken = await recaptchaRef.current?.executeAsync()
+      recaptchaRef.current?.reset()
       // const human = await isHuman(recaptchaToken || "");
       // if (!human) {
       //   toast.error("An error occurred. Please try again.");
       //   return;
       // }
 
-      await axios.post(
-        "https://us-central1-driflys-80cfb.cloudfunctions.net/sendContactUsEmail",
-        values
-      );
-      actions.resetForm();
-      toast.success("Message sent successfully");
+      await axios.post("https://us-central1-driflys-80cfb.cloudfunctions.net/sendContactUsEmail", values)
+      actions.resetForm()
+      toast.success("Message sent successfully")
     } catch (err) {
-      toast.error(
-        "An error occurred while submitting your message. Please try again later."
-      );
-      console.error(err);
+      toast.error("An error occurred while submitting your message. Please try again later.")
+      console.error(err)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // const isHuman = async (token: string): Promise<boolean> => {
   //   try {
@@ -160,62 +155,7 @@ function ContactUs() {
   // };
 
   return (
-    <Page
-      title="Driflys - Contact us"
-      meta={
-        <>
-          <meta
-            name="description"
-            content="Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature"
-          />
-          <link rel="icon" href="/favicon.ico" />
-
-          <meta
-            name="title"
-            content={`Driflys - Create design & send certificates hassle freely`}
-          />
-          <meta
-            name="description"
-            content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-          />
-
-          {/* Open Graph / Facebook */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://driflys.com/" />
-          <meta
-            property="og:title"
-            content={`Driflys - Create design & send certificates hassle freely`}
-          />
-          <meta
-            property="og:description"
-            content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-          />
-          <meta
-            property="og:image"
-            content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
-          />
-
-          {/* Twitter */}
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content="https://driflys.com/" />
-          <meta
-            property="twitter:title"
-            content={`Driflys - Create design & send certificates hassle freely`}
-          />
-          <meta
-            property="twitter:description"
-            content={`Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature`}
-          />
-          <meta
-            property="twitter:image"
-            content="https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO.png"
-          />
-          <meta name="twitter:site" content="@driflys" />
-          <meta name="twitter:creator" content="@driflys" />
-          <meta name="author" content="Driflys" />
-        </>
-      }
-    >
+    <Page title="Contact us - Driflys">
       <div className="bg-white">
         <div className="container flex flex-col gap-8 py-14 lg:h-screen z-10 md:flex-row md:items-center md:justify-center md:gap-32">
           <div>
@@ -242,38 +182,24 @@ function ContactUs() {
                     .typeString("Or anything else to say ?")
                     .pauseFor(2500)
                     .deleteAll()
-                    .start();
+                    .start()
                 }}
               />
             </h3>
-            <p
-              id="subtitle-2"
-              className="mt-2 font-semibold text-center text-md text-gray-500"
-            >
+            <p id="subtitle-2" className="mt-2 font-semibold text-center text-md text-gray-500">
               Fill the form to contact us
             </p>
           </div>
 
-          <div
-            id="form"
-            className="py-12 px-4 md:px-6 md:max-w-xl h-fit shadow-xl rounded-xl bg-white md:flex-1"
-          >
+          <div id="form" className="py-12 px-4 md:px-6 md:max-w-xl h-fit drop-shadow-xl rounded-xl bg-white md:flex-1">
             <Formik
               initialValues={initialContactUsValues}
               validationSchema={contactUsValidationSchema}
               onSubmit={handleContactUsSubmit}
             >
               <Form className="flex flex-col gap-2">
-                <Field
-                  name="firstName"
-                  label="First Name"
-                  component={TextField}
-                />
-                <Field
-                  name="lastName"
-                  label="Last Name"
-                  component={TextField}
-                />
+                <Field name="firstName" label="First Name" component={TextField} />
+                <Field name="lastName" label="Last Name" component={TextField} />
                 <Field name="email" label="Email" component={TextField} />
                 <Field name="message" label="Message" component={TextArea} />
                 <button
@@ -289,15 +215,11 @@ function ContactUs() {
           </div>
         </div>
       </div>
-      <ReCAPTCHA
-        ref={recaptchaRef}
-        size="invisible"
-        sitekey={env.RECAPTCHA_SITE_KEY}
-      />
+      <ReCAPTCHA ref={recaptchaRef} size="invisible" sitekey={env.RECAPTCHA_SITE_KEY} />
     </Page>
-  );
+  )
 }
 
-ContactUs.layout = PreLaunchLayout;
+ContactUs.layout = MainLayout
 
-export default ContactUs;
+export default ContactUs

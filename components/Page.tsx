@@ -1,20 +1,18 @@
-import React from "react";
+import React from "react"
 
-import MetaTags from "./MetaTags";
+import MetaTags, { MetaTagProps } from "./MetaTags"
 
-function Page({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title: string;
-}) {
-  return (
-    <>
-      <MetaTags title={title} />
-      {children}
-    </>
-  );
+interface PageProps extends MetaTagProps {
+  children: React.ReactNode
 }
 
-export default Page;
+function Page({ children, ...rest }: PageProps) {
+  return (
+    <>
+      <MetaTags {...rest} />
+      {children}
+    </>
+  )
+}
+
+export default Page
