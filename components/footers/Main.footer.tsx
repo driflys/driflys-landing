@@ -61,7 +61,7 @@ function MainFooter() {
                 <FooterLink title="Login" href="https://app.driflys.com/auth/login" />
               </li>
               <li>
-                <FooterLink title="SignUp" href="https://app.driflys.com/auth/signup" />
+                <FooterLink title="SignUp" href="https://app.driflys.com/auth/signUp" />
               </li>
             </ul>
           </div>

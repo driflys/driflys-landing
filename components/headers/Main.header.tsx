@@ -51,7 +51,7 @@ function MainHeader() {
             </Link>
           </li>
           <li>
-            <Link href="https://app.driflys.com/auth/signup">
+            <Link href="https://app.driflys.com/auth/signUp">
               <a className="bg-blue-700 text-gray-100 font-semibold py-2 px-4 rounded-md hover:bg-blue-600 hover:text-white">
                 SignUp
               </a>
