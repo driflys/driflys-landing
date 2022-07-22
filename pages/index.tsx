@@ -55,7 +55,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="relative -mt-40 pt-56 z-0 bg-gradient-to-r from-blue-600 to-indigo-500">
+        <section className="relative -mt-40 pt-56 z-0 bg-gradient-to-r from-blue-600 to-blue-900">
           <div className="mx-auto w-fit">
             <div className="container">
               <h1 className="text-white text-4xl text-center font-bold md:text-6xl">
@@ -147,7 +147,7 @@ const Home = () => {
         <section className="bg-zinc-900">
           <div className="container py-20 flex flex-col justify-center items-center">
             <h1 className="text-white text-4xl text-center font-semibold md:text-6xl">Interested in Driflys</h1>
-            <p className="mt-5 text-gray-100 text-md text-center md:text-xl">
+            <p className="mt-5 text-gray-300 text-md text-center md:text-xl">
               Start using Driflys to simplify the Digital Certificate Issuing process
             </p>
             <button className="mt-5 bg-gray-100 text-black font-semibold py-2 px-6 rounded-md hover:bg-white">
