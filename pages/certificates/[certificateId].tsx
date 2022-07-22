@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react"
 
 // next
-import { GetServerSidePropsContext, GetStaticPaths, GetStaticProps } from "next"
+import Image from "next/image"
+import { GetStaticPaths, GetStaticProps } from "next"
+import { useRouter } from "next/router"
 
 import axiosInstance from "../../config/axios"
 
@@ -12,23 +14,25 @@ import { formatDate } from "../../utils"
 
 // components
 import Page from "../../components/Page"
-import Certificate from "../../components/certificateView/Certificate"
+import BasicDetails from "../../components/certificateView/BasicDetails"
 import Actions from "../../components/certificateView/Actions"
 import Brand from "../../components/certificateView/Brand"
 import Remarks from "../../components/certificateView/Remarks"
 import Skills from "../../components/certificateView/Skills"
 import Event from "../../components/certificateView/Event"
 import RevokedBanner from "../../components/certificateView/RevokedBanner"
+import Loader from "../../components/Loader"
+
+import { common } from "../../constants"
 
 function CertificateView({ certificate, event, brand }: any) {
+  const router = useRouter()
   const [url, setUrl] = useState("https://driflys.com")
   const [issuer, setIssuer] = useState<any>({})
-  // const [brand, setBrand] = useState<any>({})
 
   useEffect(() => {
     setUrl(window.location.href)
     fetchIssuer()
-    // fetchBrand()
   }, [certificate])
 
   const fetchIssuer = async () => {
@@ -40,20 +44,11 @@ function CertificateView({ certificate, event, brand }: any) {
     }
   }
 
-  console.log("Certificate", certificate)
-
-  // const fetchBrand = async () => {
-  //   try {
-  //     const res = await axiosInstance.get(`/brands/${certificate.brandId}`)
-  //     setBrand(res.data)
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
-  // }
-
   const certificateName = `${certificate?.receiver?.name}'s certificate for ${event?.name}`
   const certificateDescription = `Check out ${certificate?.receiver?.name}'s certificate`
   const hashtags = ["driflys", "certificate", "driflys_certificate"]
+
+  if (router.isFallback) return <Loader />
 
   return (
     <Page
@@ -80,64 +75,60 @@ function CertificateView({ certificate, event, brand }: any) {
         creator: "@driflys",
       }}
     >
-      <div className="pt-20 px-2">
-        <div className="mb-4">
-          {certificate?.state?.isRevoked && (
-            <RevokedBanner
-              reason={certificate?.state?.revokedReason}
-              revokedAt={formatDate(certificate?.state?.revokedAt)}
-            />
-          )}
-        </div>
-
-        <div className="flex items-center justify-center">
-          <Certificate
-            id={certificate?.id}
-            image={certificate?.media?.image}
-            name={certificate?.receiver?.name}
-            issued={certificate?.createdAt}
+      <main className="bg-white">
+        {certificate?.state?.isRevoked && (
+          <RevokedBanner
+            reason={certificate?.state?.revokedReason}
+            revokedAt={formatDate(certificate?.state?.revokedAt)}
           />
-        </div>
-      </div>
-
-      <div className="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3 gap-4 mt-12 mb-12">
-        {certificate?.remarks && (
-          <div className="md:col-start-1 md:col-span-2">
-            <Remarks remarks={certificate?.remarks} />
-          </div>
         )}
+        <section className="bg-gray-50 py-12">
+          <div className="container mx-auto w-fit drop-shadow-lg">
+            <Image
+              src={certificate?.media?.image ?? common.noImage}
+              alt="Certificate image"
+              width={700}
+              height={450}
+              objectFit="contain"
+            />
+          </div>
+        </section>
 
-        <div className="md:col-start-3 md:row-span-2">
-          <Actions
-            url={url}
-            image={certificate?.media?.image}
-            pdf={certificate?.media?.pdf}
-            issuer={issuer}
-            certificateName={certificateName}
-            certificateDescription={certificateDescription}
-            certificateId={certificate?.id}
-            certificateCreatedAt={certificate?.createdAt}
-            hashtags={hashtags}
-          />
-        </div>
+        <section className="container mt-12 pb-16">
+          <div className="grid grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <Actions
+                url={url}
+                image={certificate?.media?.image}
+                pdf={certificate?.media?.pdf}
+                issuer={issuer}
+                certificateName={certificateName}
+                certificateDescription={certificateDescription}
+                certificateId={certificate?.id}
+                certificateCreatedAt={certificate?.createdAt}
+                hashtags={hashtags}
+              />
 
-        <div className="md:col-start-1 md:col-span-2">
-          {certificate?.gainedSkills && <Skills skills={certificate?.gainedSkills} />}
-        </div>
-        <div className="md:col-start-3">
-          <Brand
-            name={brand?.name}
-            type={brand?.type}
-            industry={brand?.industry}
-            logo={brand?.logoUrl}
-            web={brand?.webUrl}
-            socialMedias={brand?.socialMedias}
-          />
-        </div>
-        <div className="md:col-start-1">
-          <Event {...event} />
-        </div>
-      </div>
+              <Brand
+                name={brand?.name}
+                description={brand?.description}
+                type={brand?.type}
+                industry={brand?.industry}
+                logo={brand?.logoUrl}
+                web={brand?.webUrl}
+              />
+            </div>
+            <BasicDetails
+              certificateId={certificate?.id}
+              receiverName={certificate?.receiver?.name}
+              createdAt={certificate?.createdAt}
+            />
+            {certificate?.remarks && <Remarks remarks={certificate?.remarks} />}
+            {certificate?.gainedSkills && <Skills skills={certificate?.gainedSkills} />}
+            <Event name={event?.name} description={event?.description} duration={event?.duration} type={event?.type} />
+          </div>
+        </section>
+      </main>
     </Page>
   )
 }
@@ -191,49 +182,3 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   return { fallback: true, paths: [] }
 }
-
-// export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-//   // return {
-//   //   redirect: {
-//   //     destination: "/",
-//   //     permanent: false,
-//   //   },
-//   // };
-
-//   const certificateId = ctx.params?.certificateId
-//   if (!certificateId)
-//     return {
-//       redirect: {
-//         destination: "/verify",
-//         permanent: false,
-//       },
-//     }
-
-//   try {
-//     const certificateRes = await axiosInstance.get(`/certificates/${certificateId}`)
-//     const eventRes = await axiosInstance.get(`/events/${certificateRes.data?.eventId}`)
-
-//     return {
-//       props: {
-//         certificate: certificateRes.data,
-//         event: eventRes.data,
-//       },
-//     }
-//   } catch (err: any) {
-//     console.error(err)
-//     if (err?.response?.status === 404)
-//       return {
-//         redirect: {
-//           destination: `/verify?error=${encodeURI("Certificate not found")}`,
-//           permanent: false,
-//         },
-//       }
-//     if (err?.response?.status === 500)
-//       return {
-//         redirect: {
-//           destination: `/verify?error=${encodeURI("An error occurred. Please try again later")}`,
-//           permanent: false,
-//         },
-//       }
-//   }
-// }
