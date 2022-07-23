@@ -85,7 +85,7 @@ const Actions = ({
 
   const renderShareOptions = (
     <div className="flex flex-row items-center gap-2">
-      <LinkedinShareButton url={url} summary={certificateDescription} source={brand.webUrl}>
+      <LinkedinShareButton url={url} title={certificateName} summary={certificateDescription} source={brand.webUrl}>
         <SocialMediaIcon src={common.socialMedia.custom.linkedIn} />
       </LinkedinShareButton>
 

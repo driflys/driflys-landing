@@ -44,9 +44,9 @@ function CertificateView({ certificate, event, brand }: any) {
     }
   }
 
-  const certificateName = `${certificate?.receiver?.name}'s certificate for ${event?.name}`
-  const certificateDescription = `Check out ${certificate?.receiver?.name}'s certificate`
-  const hashtags = ["driflys", "certificate", "driflys_certificate"]
+  const certificateName = `${certificate?.receiver?.name}'s certificate in ${event?.name} issued by ${brand?.name}`
+  const certificateDescription = `This certificate was awarded to ${certificate?.receiver?.name} for participating in ${event?.name} which was organized by ${brand?.name}`
+  const hashtags = ["driflys", "certificate", "driflysCertificate"]
 
   if (router.isFallback) return <Loader />
 
