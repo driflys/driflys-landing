@@ -176,3 +176,5 @@ const MenuLink = forwardRef<HTMLAnchorElement, MenuLinkProps>((props, ref) => {
     </Link>
   )
 })
+
+MenuLink.displayName = "MenuLink"
