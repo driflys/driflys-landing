@@ -126,8 +126,8 @@ const MobileMenu = () => {
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-1 py-1">
+        <Menu.Items className="absolute right-0 mt-2 w-80 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="px-2 py-2">
             <MenuItem title="Home" href="/" />
             <p className="px-2 py-2 text-sm">Features</p>
             <div className="pl-6">
@@ -137,8 +137,19 @@ const MobileMenu = () => {
             </div>
             <MenuItem title="Pricing" href="/pricing" />
             <MenuItem title="Contact us" href="/contact-us" />
-            <MenuItem title="Login" href="https://app.driflys/auth/login" />
-            <MenuItem title="Create account" href="https://app.driflys/auth/signup" />
+
+            <div className="mt-2 flex flex-col gap-2 p-2">
+              <Link href="https://app.driflys.com/auth/login">
+                <a className="text-center text-blue-700 border-2 border-blue-700 rounded-md py-2 hover:bg-blue-50">
+                  <button>Login</button>
+                </a>
+              </Link>
+              <Link href="https://app.driflys.com/auth/signUp">
+                <a className="text-center text-gray-50 bg-blue-700 rounded-md py-2 hover:bg-blue-600">
+                  <button>Create account</button>
+                </a>
+              </Link>
+            </div>
           </div>
         </Menu.Items>
       </Transition>

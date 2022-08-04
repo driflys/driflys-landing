@@ -3,6 +3,7 @@ import { useState } from "react"
 
 // next
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 import { Disclosure, Transition } from "@headlessui/react"
 
@@ -44,7 +45,7 @@ const plans: Plan[] = [
     quotas: ["Up to 30 certificates monthly", "Up to 1 event monthly", "Up to 1 template monthly"],
     features: [
       "Certificate builder",
-      "Brand promoting",
+      // "Brand promoting",
       "Certificate email tracking",
       "Certificate sharing",
       "High quality certificates in PDF",
@@ -62,9 +63,10 @@ const plans: Plan[] = [
       "All the free plan features",
       "Professional templates",
       "Brand white labelling on certificates",
-      "Certificate issue history",
+      "Basic brand promoting",
+      // "Certificate issue history",
     ],
-    buttonText: "Subscribe",
+    buttonText: "Talk to sales",
   },
   {
     name: "PRO",
@@ -81,7 +83,7 @@ const plans: Plan[] = [
       "Revokable certificates",
       "Delete certificates",
     ],
-    buttonText: "Subscribe",
+    buttonText: "Talk to sales",
   },
 ]
 
@@ -110,9 +112,15 @@ const faqs = [
 
 function Pricing() {
   const { user } = useSession()
+  const router = useRouter()
   const [planDuration, setPlanDuration] = useState<PlanDuration>(PlanDurations.MONTHLY)
 
   const currentPlan = user?.plan ?? ""
+
+  const handlePlanSubscribe = (planName: string, productName: string, duration: string) => {
+    if (planName === "FREE") router.push("https://app.driflys.com/auth/signUp")
+    else router.push("/contact-us")
+  }
 
   return (
     <Page title="Pricing - Driflys">
@@ -151,9 +159,24 @@ function Pricing() {
             className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3"
             onClick={() => setPlanDuration(PlanDurations.MONTHLY)}
           >
-            <PlanCard plan={plans[0]} duration={planDuration} currentPlan={currentPlan} onSubscribe={() => {}} />
-            <PlanCard plan={plans[1]} duration={planDuration} currentPlan={currentPlan} onSubscribe={() => {}} />
-            <PlanCard plan={plans[2]} duration={planDuration} currentPlan={currentPlan} onSubscribe={() => {}} />
+            <PlanCard
+              plan={plans[0]}
+              duration={planDuration}
+              currentPlan={currentPlan}
+              onSubscribe={handlePlanSubscribe}
+            />
+            <PlanCard
+              plan={plans[1]}
+              duration={planDuration}
+              currentPlan={currentPlan}
+              onSubscribe={handlePlanSubscribe}
+            />
+            <PlanCard
+              plan={plans[2]}
+              duration={planDuration}
+              currentPlan={currentPlan}
+              onSubscribe={handlePlanSubscribe}
+            />
             <div className="col-start-1 md:col-start-1 md:col-span-3">
               <EnterprisePlanCard />
             </div>
