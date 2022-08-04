@@ -28,19 +28,26 @@ const Home = () => {
       <main className="bg-white">
         <section id="hero" className="container">
           <div className="pt-12">
-            <h1 className="mx-auto text-4xl font-bold text-center leading-normal md:text-6xl md:max-w-4xl md:leading-snug">
+            <p className="mt-4 mx-auto w-fit flex items-center gap-2 bg-gradient-to-r from-blue-600 to-green-400 text-gray-50 font-semibold py-2 px-6 rounded-md">
+              Beta
+            </p>
+            <h1 className="mx-auto mt-4 text-4xl font-bold text-center leading-normal md:text-6xl md:max-w-4xl md:leading-snug">
               {`Create design  & send `}
               <span className="font-black text-blue-700">Certificates</span> Hassle freely
             </h1>
             <h2 className="mt-2 text-gray-500 font-semibold text-center mx-auto max-w-xl">
               Issue digital certificates, promote your brand by admiring the audience. We can help you.{" "}
             </h2>
-            <button className="mt-4 mx-auto flex items-center gap-2 bg-gradient-to-r from-blue-600 to-green-400 text-gray-50 font-semibold py-2 px-6 rounded-md transition ease-in-out delay-150 duration-200 hover:shadow-lg hover:hover:scale-105 hover:text-white">
-              Get started
-              <span>
-                <ChevronRightIcon className="w-5 h-5" />
-              </span>
-            </button>
+            <Link href="https://app.driflys.com/auth/signUp">
+              <a>
+                <button className="mt-4 mx-auto flex items-center gap-2 bg-blue-700 text-gray-50 font-semibold py-2 px-6 rounded-md transition ease-in-out delay-150 duration-200 hover:shadow-lg hover:hover:scale-105 hover:text-white">
+                  Get started
+                  <span>
+                    <ChevronRightIcon className="w-5 h-5" />
+                  </span>
+                </button>
+              </a>
+            </Link>
           </div>
         </section>
 
@@ -62,10 +69,14 @@ const Home = () => {
               <h1 className="text-white text-4xl text-center font-bold md:text-6xl">
                 All can be done via easy to use interface
               </h1>
-              <button className="mt-10 mx-auto flex items-center gap-2 bg-gray-50 text-black font-semibold py-2 px-8 rounded-md transition ease-in-out delay-150 duration-200 hover:bg-white hover:shadow-xl">
-                <UserAddIcon className="w-5 h-5" />
-                Free SignUp
-              </button>
+              <Link href="https://app.driflys.com/auth/signUp">
+                <a>
+                  <button className="mt-10 mx-auto flex items-center gap-2 bg-gray-50 text-black font-semibold py-2 px-8 rounded-md transition ease-in-out delay-150 duration-200 hover:bg-white hover:shadow-xl">
+                    <UserAddIcon className="w-5 h-5" />
+                    Free SignUp
+                  </button>
+                </a>
+              </Link>
               <div className="relative mt-10 mx-auto w-fit">
                 <Image
                   src={DashboardUI}
@@ -98,9 +109,13 @@ const Home = () => {
               Literally everyone can use our platform to issue digital certificates. Driflys can be utilized from small
               organizations to large scale companies for launching certification programs with ease.
             </p>
-            <button className="mt-5 bg-blue-700 text-gray-50 font-semibold py-2 px-6 rounded-md hover:bg-blue-600 hover:text-white">
-              Start using Driflys
-            </button>
+            <Link href="https://app.driflys.com/auth/signUp">
+              <a>
+                <button className="mt-5 bg-blue-700 text-gray-50 font-semibold py-2 px-6 rounded-md hover:bg-blue-600 hover:text-white">
+                  Start using Driflys
+                </button>
+              </a>
+            </Link>
             <p className="mt-2 text-sm">*No credit card required</p>
           </div>
         </section>
@@ -135,7 +150,7 @@ const Home = () => {
             <h1 className="mt-5 text-4xl text-center font-semibold md:text-6xl">Promote your brand</h1>
             <p className="mt-5 mx-auto text-lg text-center max-w-xl md:text-xl">{`Certificate is a powerful marketing tool. Our platform allows you to add your brandings such as logo, name, colors so that your brand can be promoted & reached at a large audience organically. `}</p>
             <div className="mt-5 mx-auto w-fit">
-              <Link href="/">
+              <Link href="/features/standard-branding">
                 <a className="flex items-center gap-1 text-blue-700 text-center text-lg font-semibold md:text-xl">
                   <p>Learn more</p>
                   <ChevronRightIcon className="w-5" />
@@ -151,9 +166,13 @@ const Home = () => {
             <p className="mt-5 text-gray-300 text-md text-center md:text-xl">
               Start using Driflys to simplify the Digital Certificate Issuing process
             </p>
-            <button className="mt-5 bg-gray-100 text-black font-semibold py-2 px-6 rounded-md hover:bg-white">
-              Try it out Now
-            </button>
+            <Link href="https://app.driflys.com/auth/signUp">
+              <a>
+                <button className="mt-5 bg-gray-100 text-black font-semibold py-2 px-6 rounded-md hover:bg-white">
+                  Try it out Now
+                </button>
+              </a>
+            </Link>
           </div>
         </section>
       </main>

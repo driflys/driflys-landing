@@ -26,12 +26,16 @@ function StandardBranding() {
               We let you to fully customize our platform according to your branding assuring the highest possible
               revenue gain for you.
             </h2>
-            <button className="mt-4 mx-auto flex items-center gap-2 bg-gradient-to-r from-blue-600 to-green-400 text-gray-50 font-semibold py-2 px-6 rounded-md transition ease-in-out delay-150 duration-200 hover:shadow-lg hover:hover:scale-105 hover:text-white">
-              Create account
-              <span>
-                <ChevronRightIcon className="w-5 h-5" />
-              </span>
-            </button>
+            <Link href="https://app.driflys.com/auth/signUp">
+              <a>
+                <button className="mt-4 mx-auto flex items-center gap-2 bg-gradient-to-r from-blue-600 to-green-400 text-gray-50 font-semibold py-2 px-6 rounded-md transition ease-in-out delay-150 duration-200 hover:shadow-lg hover:hover:scale-105 hover:text-white">
+                  Create account
+                  <span>
+                    <ChevronRightIcon className="w-5 h-5" />
+                  </span>
+                </button>
+              </a>
+            </Link>
           </div>
         </section>
 
