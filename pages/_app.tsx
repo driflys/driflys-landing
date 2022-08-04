@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 import { pageView } from "../utils/gtag"
+
 import { env } from "../constants/env"
 
 function MyApp({ Component, pageProps }: any) {
