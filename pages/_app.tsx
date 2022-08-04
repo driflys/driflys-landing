@@ -32,8 +32,8 @@ function MyApp({ Component, pageProps }: any) {
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${env.GA_ID}`} />
-      <Script strategy="lazyOnload">
+      <Script id="" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${env.GA_ID}`} />
+      <Script id="" strategy="lazyOnload">
         {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){window.dataLayer.push(arguments);}
