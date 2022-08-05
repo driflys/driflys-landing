@@ -91,10 +91,10 @@ function MainFooter() {
         </div>
 
         {/* Copyright */}
-        <div className="mx-auto col-start-1 row-start-7 col-span-3 md:col-start-1 md:row-start-3 md:col-span-8">
+        <div className="mt-8 mx-auto col-start-1 row-start-7 col-span-3 md:col-start-1 md:row-start-3 md:col-span-8">
           <div className="mx-auto w-fit flex items-center gap-4">
-            <FooterLink title="Privacy policy" href="/privacy-policy" />
-            <FooterLink title={`Terms & conditions`} href="/terms-conditions" />
+            <FooterLink title={`Terms & conditions`} href="/legal/terms-conditions" />
+            <FooterLink title="Refund policy" href="/legal/refund-policy" />
           </div>
           <p className="mt-2 text-center text-gray-600">{dayjs().year()} All Rights Reserved ©️ Driflys</p>
         </div>
@@ -113,7 +113,7 @@ interface FooterLinkProps {
 const FooterLink = ({ title, href }: FooterLinkProps) => {
   return (
     <Link href={href}>
-      <a className="cursor-pointer text-gray-600 md:text-lg hover:text-black">{title}</a>
+      <a className="cursor-pointer text-gray-600 md:text-md hover:text-black">{title}</a>
     </Link>
   )
 }
