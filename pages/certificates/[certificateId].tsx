@@ -76,11 +76,8 @@ function CertificateView({ certificate, event, brand }: any) {
       }}
     >
       <main className="bg-white">
-        {certificate?.state?.isRevoked && (
-          <RevokedBanner
-            reason={certificate?.state?.revokedReason}
-            revokedAt={formatDate(certificate?.state?.revokedAt)}
-          />
+        {certificate?.revokedAt && (
+          <RevokedBanner reason={certificate?.revokedReason} revokedAt={formatDate(certificate?.revokedAt)} />
         )}
         <section className="bg-gray-50 py-12">
           <div className="container mx-auto w-fit drop-shadow-lg">
