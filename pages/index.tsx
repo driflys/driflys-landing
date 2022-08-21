@@ -1,4 +1,5 @@
 // next
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -25,6 +26,53 @@ import GrowthChart from "../public/illustrations/GrowthChart.svg"
 const Home = () => {
   return (
     <Page title="Driflys">
+      <Head>
+        <script type="application/ld+json">
+          {`    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Driflys - Create design and send certificates hassle freely",
+      "image": [
+        "https://res.cloudinary.com/driflys/image/upload/v1660485715/logos/SEO.png",
+        "https://res.cloudinary.com/driflys/image/upload/v1654452870/logos/SEO-Old.png"
+       ],
+      "description": "Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature.",
+      "sku": "0446310786",
+      "mpn": "925872",
+      "brand": {
+        "@type": "Brand",
+        "name": "Driflys"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Course Instructor"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "1"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://driflys.com",
+        "priceCurrency": "USD",
+        "price": "0",
+        "priceValidUntil": "2023-03-2",
+        "itemCondition": "",
+        "availability": ""
+      }
+    }
+`}
+        </script>
+      </Head>
       <main className="bg-white">
         <section id="hero" className="container">
           <div className="pt-12">

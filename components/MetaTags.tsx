@@ -3,8 +3,8 @@ import Head from "next/head"
 import { brand } from "../constants"
 
 export interface MetaTagProps {
-  pageTitle?: string
   title?: string
+  metaTitle?: string
   description?: string
   author?: string
   og?: {
@@ -28,8 +28,8 @@ export interface MetaTagProps {
 }
 
 const defaultProps: MetaTagProps = {
-  pageTitle: brand.name,
-  title: "Driflys - Create design & send certificates hassle freely",
+  title: brand.name,
+  metaTitle: "Driflys - Create design & send certificates hassle freely",
   description:
     "Driflys is a platform/app which helps to automate the process of designing & issuing certificates with built in certificate validation feature",
   author: brand.name,
@@ -55,19 +55,19 @@ const defaultProps: MetaTagProps = {
   },
 }
 
-function MetaTags({ title, description, author, og, twitter }: MetaTagProps) {
+function MetaTags({ title, metaTitle, description, author, og, twitter }: MetaTagProps) {
   return (
     <Head>
-      <title>{title || defaultProps.pageTitle}</title>
+      <title>{title || defaultProps.title}</title>
       <link rel="icon" href="/favicon.ico" />
       <meta name="author" content={author || defaultProps.author} />
-      <meta name="title" content={title || defaultProps.title} />
+      <meta name="title" content={metaTitle || defaultProps.metaTitle} />
       <meta name="description" content={description || defaultProps.description} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={og?.type || defaultProps.og?.type} />
       <meta property="og:url" content={og?.url || defaultProps.og?.url} />
-      <meta property="og:title" content={title || defaultProps.og?.title} />
+      <meta property="og:title" content={og?.title || defaultProps.og?.title} />
       <meta property="og:description" content={description || defaultProps.og?.description} />
       <meta property="og:image" content={og?.image || defaultProps.og?.image} />
       <meta property="og:image:alt" content={og?.alt || defaultProps.og?.alt} />
