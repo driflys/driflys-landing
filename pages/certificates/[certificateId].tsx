@@ -52,8 +52,8 @@ function CertificateView({ certificate, event, brand }: any) {
 
   return (
     <Page
-      pageTitle={`${certificate?.receiver?.name} | ${event?.name} - Driflys`}
-      title={certificateName}
+      title={`${certificate?.receiver?.name} | ${event?.name} - Driflys`}
+      metaTitle={certificateName}
       description={certificateDescription}
       author="Driflys"
       og={{
