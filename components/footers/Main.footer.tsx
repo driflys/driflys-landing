@@ -83,11 +83,11 @@ function MainFooter() {
 
         {/* Social Media */}
         <div className="col-start-3 row-start-1 row-span-4 flex flex-col gap-2 md:justify-end items-end md:items-start md:col-start-8 md:row-start-1 md:row-span-1 md:flex-row">
-          <SocialIcon href={brand.socialMedia.facebook} alt="facebook" src={common.socialMedia.negative.facebook} />
+          <SocialIcon href={brand.socialMedia.linkedIn} alt="linkedin" src={common.socialMedia.negative.linkedIn} />
           <SocialIcon href={brand.socialMedia.twitter} alt="twitter" src={common.socialMedia.negative.twitter} />
           <SocialIcon href={brand.socialMedia.instagram} alt="instagram" src={common.socialMedia.negative.instagram} />
-          <SocialIcon href={brand.socialMedia.youtube} alt="youtube" src={common.socialMedia.negative.youtube} />
-          <SocialIcon href={brand.socialMedia.linkedIn} alt="linkedin" src={common.socialMedia.negative.linkedIn} />
+          <SocialIcon href={brand.socialMedia.facebook} alt="facebook" src={common.socialMedia.negative.facebook} />
+          {/* <SocialIcon href={brand.socialMedia.youtube} alt="youtube" src={common.socialMedia.negative.youtube} /> */}
         </div>
 
         {/* Copyright */}

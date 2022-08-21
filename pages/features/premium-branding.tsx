@@ -17,7 +17,7 @@ import InfoCard from "../../components/InfoCard"
 
 function PremiumBranding() {
   return (
-    <Page title="Standard Branding - Driflys">
+    <Page title="Premium Branding - Driflys">
       <main className="bg-white">
         <section id="hero" className="container">
           <div className="pt-12">

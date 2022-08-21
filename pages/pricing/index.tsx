@@ -2,6 +2,8 @@
 import { useState } from "react"
 
 // next
+import Head from "next/head"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
@@ -15,6 +17,12 @@ import StarIcon from "@heroicons/react/solid/StarIcon"
 import CheckIcon from "@heroicons/react/outline/CheckIcon"
 import CheckCircleIcon from "@heroicons/react/solid/CheckCircleIcon"
 import ChevronRightIcon from "@heroicons/react/outline/ChevronRightIcon"
+
+// images
+import VisaLogo from "../../public/other/visa.png"
+import MastercardLogo from "../../public/other/mastercard.png"
+import AmericanExpressLogo from "../../public/other/american-express.png"
+import PaddleLogo from "../../public/other/paddle-payment-gateway.png"
 
 import useSession from "../../hooks/useSession"
 
@@ -38,16 +46,17 @@ interface Plan {
 const plans: Plan[] = [
   {
     name: "FREE",
-    description: "For non-professional use. Mainly for test purposes",
+    description: "For non-professional use. Mainly for testing purposes",
     productName: "Driflys Free Forever",
     monthlyPrice: 0,
     halfYearlyPrice: 0,
-    quotas: ["Up to 30 certificates monthly", "Up to 1 event monthly", "Up to 1 template monthly"],
+    quotas: ["Up to 100 certificates yearly", "Up to 5 events yearly", "Up to 5 templates yearly"],
     features: [
       "Certificate builder",
-      // "Brand promoting",
+      "Bulk certificate issue",
       "Certificate email tracking",
       "Certificate sharing",
+      "Certificate verification",
       "High quality certificates in PDF",
     ],
     buttonText: "Start Free",
@@ -56,15 +65,14 @@ const plans: Plan[] = [
     name: "STANDARD",
     description: "For professional use with basic features. Best for issue certificates to small groups",
     productName: "Driflys Standard",
-    monthlyPrice: 15,
-    halfYearlyPrice: 12,
-    quotas: ["Up to 100 certificates monthly", "Up to 5 event monthly", "Up to 5 template monthly"],
+    monthlyPrice: 20,
+    halfYearlyPrice: 16,
+    quotas: ["Up to 500 certificates yearly", "Up to 30 events yearly", "Up to 30 templates yearly"],
     features: [
       "All the free plan features",
       "Professional templates",
-      "Brand white labelling on certificates",
-      "Basic brand promoting",
-      // "Certificate issue history",
+      "LinkedIn Certificates",
+      "Remove Driflys branding on certificates",
     ],
     buttonText: "Talk to sales",
   },
@@ -72,15 +80,14 @@ const plans: Plan[] = [
     name: "PRO",
     description: "For professional plus use with advanced features. Great for issue certificates to large groups",
     productName: "Driflys Pro",
-    monthlyPrice: 45,
-    halfYearlyPrice: 40,
-    quotas: ["Up to 1000 certificates monthly", "Up to 50 event monthly", "Up to 50 template monthly"],
+    monthlyPrice: 40,
+    halfYearlyPrice: 32,
+    quotas: ["Up to 1000 certificates yearly", "Unlimited events", "Unlimited templates"],
     features: [
       "All the standard plan features",
-      "LinkedIn Certificates",
       "Email template customization",
-      "Brand white labelling on email templates",
-      "Revokable certificates",
+      "Add your branding on email templates",
+      "Revoke certificates",
       "Delete certificates",
     ],
     buttonText: "Talk to sales",
@@ -89,24 +96,53 @@ const plans: Plan[] = [
 
 const faqs = [
   {
-    question: "What is Driflys?",
+    question: "Do you refund money?",
     answer:
-      "Driflys is a platform for creating and sharing certificates. It is a free service for non-professional use. It is mainly for test purposes.",
+      "Yes, if you cancelled the paid subscription within 7days from the day you purchased, we’ll refund your money back.",
+    link: "https://driflys.com/legal/refund-policy",
+    linkTitle: "Find out more at Refund Policy",
   },
   {
-    question: "How do I use Driflys?",
-    answer:
-      "You can use Driflys to create certificates for your customers. You can also use Driflys to create templates for your customers. You can also use Driflys to create events for your customers. You can also use Driflys to create brands for your customers.",
+    question: "Do you offer discounts for non-profits?",
+    answer: "Yes, we offer discounts up to 50% for non-profit organizations. Please contact us.",
   },
   {
-    question: "How do I create a certificate?",
-    answer:
-      "You can use the certificate builder to create a certificate. You can also use the certificate builder to create a template. You can also use the certificate builder to create an event.",
+    question: "Can we cancel at anytime?",
+    answer: "Yes, you can cancel your subscription at anytime.",
   },
   {
-    question: "How do I create a template?",
+    question: "Is there any trial period?",
     answer:
-      "You can use the certificate builder to create a template. You can also use the certificate builder to create an event.",
+      "As of now, we don’t offer any trial period but if you want to get hands on experience with the platform, we can offer you a demo.",
+    link: "https://driflys.com/contact-us",
+    linkTitle: "Contact Us",
+  },
+  {
+    question: "Do you offer discounts for non-profits?",
+    answer: "Yes, we offer discounts up to 50% for non-profit organizations.",
+    link: "https://driflys.com/contact-us",
+    linkTitle: "Please contact Us",
+  },
+  {
+    question: "How safe is our data?",
+    answer:
+      "We at Driflys have taken necessary steps. All data transmitted through the internet is encrypted and we save your data at a secure tier 3 SOC 2-certified data center. We take backups in a pre-defined interval so that we can guarantee your data is stored safely.",
+  },
+  {
+    question: "How can we get premium branding and custom domain?",
+    answer:
+      "We provide premium branding and custom domain with dedicate hosting only for Enterprise plan users. Standard and Pro plan users are provided with Basic branding features.",
+    link: "https://driflys.com/features/standard-branding",
+    linkTitle: "Find out Basic branding",
+  },
+  {
+    question: "Are there any long-term contracts to be signed?",
+    answer:
+      "No, there are no long-term contracts to be signed. You can create a subscription in a monthly or half-yearly(6 months) basis.",
+  },
+  {
+    question: "Are there any ongoing fees for maintaining my certificates?",
+    answer: "No, there are no extra fees involved to keep your certificates online after they are issued.",
   },
 ]
 
@@ -123,7 +159,53 @@ function Pricing() {
   }
 
   return (
-    <Page title="Pricing - Driflys">
+    <Page
+      title="Pricing - Driflys"
+      description="Pricing plans suitable for every scale. Free: For non-professional use. No credit card required, Standard: For professional use with basic features. $20, Pro: For professional plus use with advanced features. $40, Enterprise: For fully customized experience"
+    >
+      <Head>
+        <script type="application/ld+json">
+          {`{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Does Driflys offer discounts for non-profits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Yes, we offer discounts up to 50% for non-profit organizations. <a href=https://driflys.com/contact-us></a> Please contact us</p>"
+        }
+      }, {
+        "@type": "Question",
+        "name": "How safe is our data in Driflys?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We at Driflys have taken necessary steps. All data transmitted through the internet is encrypted and we save your data at a secure tier 3 SOC 2-certified data center. We take backups in a pre-defined interval so that we can guarantee your data is stored safely."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How can we get a custom domain in Driflys?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>We provide <a href=https://driflys.com/features/premium-branding> Premium Branding </>and custom domain with dedicate hosting only for Enterprise plan users. Standard and Pro plan users are provided with <a href=https://driflys.com/features/standard-branding> Basic Branding </a>features.</p>"
+        }
+      }, {
+        "@type": "Question",
+        "name": "Are there any long-term contracts to be signed for a Driflys account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, there are no long-term contracts to be signed. You can create a subscription in a monthly or half-yearly(6 months) basis."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can we cancel Driflys account at anytime?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text":"Yes, you can cancel your subscription at anytime."}
+        }]
+    }`}
+        </script>
+      </Head>
       <main className="bg-white">
         <section id="hero" className="container">
           <div className="pt-12">
@@ -181,16 +263,28 @@ function Pricing() {
               <EnterprisePlanCard />
             </div>
           </div>
+
+          <div className="mt-8 mx-auto w-fit">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <Image src={VisaLogo} alt="Visa logo" width={60} height={50} objectFit="contain" />
+              <Image src={MastercardLogo} alt="Mastercard logo" width={50} height={30} objectFit="contain" />
+              <Image src={AmericanExpressLogo} alt="American express logo" width={70} height={35} objectFit="contain" />
+              <Image src={PaddleLogo} alt="Paddle payment gateway logo" width={60} height={35} objectFit="contain" />
+            </div>
+            <p className="mt-4 text-center text-sm">We process all the payments using secure checkout via Paddle</p>
+          </div>
         </section>
 
         {/* FAQ */}
-        <section className="container mt-8 pb-8">
+        <section className="container mt-16 pb-8">
           <div className="mx-auto">
-            <h1 className="text-4xl text-center font-semibold">FAQs</h1>
+            <h1 className="text-4xl text-center font-semibold">Frequently Asked Questions</h1>
           </div>
-          <div className="mt-8 mx-auto max-w-3xl">
+          <div className="mt-12 mx-auto max-w-4xl">
             {faqs.map((faq, i) => {
-              return <FAQTab key={i} question={faq.question} answer={faq.answer} />
+              return (
+                <FAQTab key={i} question={faq.question} answer={faq.answer} link={faq.link} linkTitle={faq.linkTitle} />
+              )
             })}
           </div>
         </section>
@@ -294,7 +388,7 @@ const EnterprisePlanCard = () => {
             <CheckCircleIcon className="w-5" /> Dedicated support
           </li>
           <li className="flex items-center gap-4 text-gray-50">
-            <CheckCircleIcon className="w-5" /> Advanced branding
+            <CheckCircleIcon className="w-5" /> Premium branding
           </li>
         </ul>
       </div>
@@ -305,14 +399,16 @@ const EnterprisePlanCard = () => {
 interface FAQTabProps {
   question: string
   answer: string
+  link?: string
+  linkTitle?: string
 }
 
-const FAQTab = ({ question, answer }: FAQTabProps) => {
+const FAQTab = ({ question, answer, link, linkTitle }: FAQTabProps) => {
   return (
     <Disclosure>
       {({ open }) => (
-        <>
-          <Disclosure.Button className="flex w-full justify-between rounded-lg text-lg font-semibold px-4 py-2 text-left text-purple-900 hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-600 focus-visible:ring-opacity-75">
+        <div>
+          <Disclosure.Button className="flex w-full justify-between rounded-lg text-xl font-semibold px-4 py-4 text-left hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-600 focus-visible:ring-opacity-75">
             <span className={`${open && "text-blue-700"}`}>{question}</span>
             <ChevronRightIcon className={`${open && "rotate-90 transform text-blue-700"} w-6`} />
           </Disclosure.Button>
@@ -324,9 +420,20 @@ const FAQTab = ({ question, answer }: FAQTabProps) => {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">{answer}</Disclosure.Panel>
+            <Disclosure.Panel className="px-4 pt-4 py-4 text-md text-gray-600">
+              {answer}{" "}
+              {link && (
+                <span>
+                  <Link href={link}>
+                    <a className="text-blue-700" target="_blank">
+                      {linkTitle}
+                    </a>
+                  </Link>{" "}
+                </span>
+              )}
+            </Disclosure.Panel>
           </Transition>
-        </>
+        </div>
       )}
     </Disclosure>
   )
