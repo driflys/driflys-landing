@@ -83,7 +83,7 @@ const Home = () => {
               {`Create design  & send `}
               <span className="font-black text-blue-700">Certificates</span> Hassle freely
             </h1>
-            <h2 className="mt-2 text-gray-500 font-semibold text-center mx-auto max-w-xl">
+            <h2 className="mt-2 text-gray-500 text-center mx-auto max-w-3xl md:text-xl">
               Issue digital certificates, promote your brand by admiring the audience. We can help you.{" "}
             </h2>
             <Link href="https://app.driflys.com/auth/signUp">
@@ -196,7 +196,7 @@ const Home = () => {
               <Image src={GrowthChart} alt="Growth chart" width={500} height={300} objectFit="contain" />
             </div>
             <h1 className="mt-5 text-4xl text-center font-semibold md:text-6xl">Promote your brand</h1>
-            <p className="mt-5 mx-auto text-lg text-center max-w-xl md:text-xl">{`Certificate is a powerful marketing tool. Our platform allows you to add your brandings such as logo, name, colors so that your brand can be promoted & reached at a large audience organically. `}</p>
+            <p className="mt-5 mx-auto text-lg text-center max-w-2xl md:text-xl">{`Certificate is a powerful marketing tool. Our platform allows you to add your brandings such as logo, name, colors so that your brand can be promoted & reached at a large audience organically. `}</p>
             <div className="mt-5 mx-auto w-fit">
               <Link href="/features/standard-branding">
                 <a className="flex items-center gap-1 text-blue-700 text-center text-lg font-semibold md:text-xl">

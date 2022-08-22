@@ -25,7 +25,7 @@ function PremiumBranding() {
               {`Go beyond the limits with `}
               <span className="font-black text-blue-700">Premium Branding</span>
             </h1>
-            <h2 className="mt-2 text-gray-500 font-semibold text-center mx-auto max-w-xl">
+            <h2 className="mt-2 text-gray-500 text-center mx-auto max-w-3xl md:text-xl">
               With premium branding, you can customize every aspect that receivers see including header, footer, page
               content and domain
             </h2>
@@ -46,24 +46,24 @@ function PremiumBranding() {
           <div className="w-fit mx-auto">
             <Image
               src={PremiumBrandingCustomization}
-              alt="Customize certificate view page reflecting your branding on it"
+              alt="Customize certificate view page reflecting your branding on it. With Driflys Premium Branding, you can customize every aspect that receivers see including header, footer, page content and domain"
               width={800}
               height={500}
               objectFit="contain"
             />
           </div>
-          <div className="mt-8 flex flex-col gap-6 items-center md:flex-row md:justify-between md:items-center">
+          <div className="mt-16 flex flex-col gap-6 items-center md:flex-row md:justify-between md:items-center">
             <div className="flex-1">
-              <h1 className="mx-auto text-4xl text-center font-bold leading-normal md:max-w-4xl md:leading-snug">
+              <h1 className="mx-auto text-4xl text-center font-bold leading-normal md:text-5xl md:max-w-4xl md:leading-snug">
                 {`Let the receivers feel like it’s home`}
               </h1>
-              <p className="mt-4 mx-auto text-gray-500 text-center max-w-3xl">{`You can bring your own website or brand stylings to our platform. So that the receivers will no longer feel anything unfamiliar. This assures the the quality and legitimacy of your service as the responsible issuer of your certificates.`}</p>
+              <p className="mt-4 mx-auto text-gray-500 text-center md:text-lg max-w-3xl">{`You can bring your own website or brand stylings to our platform. So that the receivers will no longer feel anything unfamiliar. This assures the the quality and legitimacy of your service as the responsible issuer of your certificates.`}</p>
             </div>
           </div>
         </section>
 
         <section className="mt-16 bg-gray-50 py-16">
-          <h1 className="text-4xl text-center font-semibold">Why Premium Branding?</h1>
+          <h1 className="text-4xl text-center font-bold md:text-5xl">Why Premium Branding?</h1>
           <div className="container mt-12 grid grid-cols-1 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-1">
             <InfoCard
               title={"Professionalism"}
@@ -91,10 +91,10 @@ function PremiumBranding() {
 
         <section>
           <div className="container mt-8 py-16 flex flex-col gap-6 items-center">
-            <h1 className="text-4xl text-center font-bold leading-normal max-w-2xl md:leading-snug">
+            <h1 className="text-4xl text-center font-bold leading-normal max-w-3xl md:text-5xl md:leading-snug">
               Assign your own domain with the certificates
             </h1>
-            <p className="mt-4 text-gray-500 text-center max-w-3xl">{`No need to redirect your audience to a third-party url to reach their certificates anymore. Instead integrate Driflys with your own domain. Let the receivers experience a truly native feeling.`}</p>
+            <p className="mt-4 text-gray-500 text-center max-w-3xl md:text-lg">{`No need to redirect your audience to a third-party url to reach their certificates anymore. Instead integrate Driflys with your own domain. Let the receivers experience a truly native feeling.`}</p>
             <p className="bg-blue-700 py-2 px-12 rounded-md text-white">https://certificate.yourdomain.com</p>
           </div>
         </section>

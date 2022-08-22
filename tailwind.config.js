@@ -3,10 +3,7 @@ module.exports = {
   purge: {
     enabled: true,
   },
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
       Poppins: ["Poppins, sans-serif"],
@@ -16,12 +13,12 @@ module.exports = {
       center: true,
       padding: "1rem",
       screens: {
-        lg: "1124px",
-        xl: "1124px",
-        "2xl": "1124px",
+        lg: "1224px",
+        xl: "1224px",
+        "2xl": "1224px",
       },
     },
     extend: {},
   },
   plugins: [],
-};
+}

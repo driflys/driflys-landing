@@ -63,7 +63,7 @@ const plans: Plan[] = [
   },
   {
     name: "STANDARD",
-    description: "For professional use with basic features. Best for issue certificates to small groups",
+    description: "For professional use with basic features. Best for issuing certificates to small groups",
     productName: "Driflys Standard",
     monthlyPrice: 20,
     halfYearlyPrice: 16,
@@ -78,7 +78,7 @@ const plans: Plan[] = [
   },
   {
     name: "PRO",
-    description: "For professional plus use with advanced features. Great for issue certificates to large groups",
+    description: "For professional plus use with advanced features. Great for issuing certificates to large groups",
     productName: "Driflys Pro",
     monthlyPrice: 40,
     halfYearlyPrice: 32,
@@ -306,7 +306,11 @@ interface PlanCardProps {
 
 const PlanCard = ({ plan, duration, currentPlan = null, onSubscribe }: PlanCardProps) => {
   return (
-    <div className="bg-white drop-shadow-lg rounded-md px-6 py-12">
+    <div
+      className={`bg-white rounded-md px-6 py-12 ${
+        plan.name === "STANDARD" ? "border-t-4 border-blue-700 drop-shadow-2xl" : "drop-shadow-lg"
+      }`}
+    >
       <h2 className="font-semibold">{plan.name}</h2>
       <h1 className="mt-8 font-semibold text-4xl">
         $ {duration === PlanDurations.MONTHLY ? plan.monthlyPrice : plan.halfYearlyPrice}{" "}
@@ -352,7 +356,7 @@ const PlanCard = ({ plan, duration, currentPlan = null, onSubscribe }: PlanCardP
 
 const EnterprisePlanCard = () => {
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:justify-evenly md:items-center md: bg-gradient-to-r from-blue-600 to-blue-900 rounded-md px-6 py-8 md:grid-cols-3 md:grid-rows-1">
+    <div className="flex flex-col gap-4 md:flex-row md:justify-evenly md:items-center md: bg-gradient-to-r from-blue-600 to-blue-900 rounded-md px-6 py-12 md:grid-cols-3 md:grid-rows-1">
       <div>
         <h2 className="text-white font-semibold">Enterprise</h2>
         <h1 className="mt-4 text-white font-semibold text-4xl">Custom Pricing</h1>
@@ -367,13 +371,13 @@ const EnterprisePlanCard = () => {
 
       <div>
         <ul className="flex flex-col justify-center gap-4">
-          <li className="flex items-center gap-4 text-gray-50">
+          <li className="flex items-center gap-4 text-gray-50 md:text-lg">
             <CheckCircleIcon className="w-5" /> Custom quota
           </li>
-          <li className="flex items-center gap-4 text-gray-50">
+          <li className="flex items-center gap-4 text-gray-50 md:text-lg">
             <CheckCircleIcon className="w-5" /> Custom features
           </li>
-          <li className="flex items-center gap-4 text-gray-50">
+          <li className="flex items-center gap-4 text-gray-50 md:text-lg">
             <CheckCircleIcon className="w-5" /> Custom domain
           </li>
         </ul>
@@ -381,13 +385,13 @@ const EnterprisePlanCard = () => {
 
       <div>
         <ul className="flex flex-col gap-4">
-          <li className="flex items-center gap-4 text-gray-50">
+          <li className="flex items-center gap-4 text-gray-50 md:text-lg">
             <CheckCircleIcon className="w-5" /> Dedicated hosting
           </li>
-          <li className="flex items-center gap-4 text-gray-50">
+          <li className="flex items-center gap-4 text-gray-50 md:text-lg">
             <CheckCircleIcon className="w-5" /> Dedicated support
           </li>
-          <li className="flex items-center gap-4 text-gray-50">
+          <li className="flex items-center gap-4 text-gray-50 md:text-lg">
             <CheckCircleIcon className="w-5" /> Premium branding
           </li>
         </ul>
@@ -409,7 +413,7 @@ const FAQTab = ({ question, answer, link, linkTitle }: FAQTabProps) => {
       {({ open }) => (
         <div>
           <Disclosure.Button className="flex w-full justify-between rounded-lg text-xl font-semibold px-4 py-4 text-left hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-600 focus-visible:ring-opacity-75">
-            <span className={`${open && "text-blue-700"}`}>{question}</span>
+            <span className={`${open ? "text-blue-700" : "text-zinc-600"}`}>{question}</span>
             <ChevronRightIcon className={`${open && "rotate-90 transform text-blue-700"} w-6`} />
           </Disclosure.Button>
           <Transition

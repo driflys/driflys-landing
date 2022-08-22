@@ -19,7 +19,13 @@ function MainFooter() {
       <div className="container grid grid-rows-7 grid-cols-3 md:grid-rows-3 md:grid-cols-8 gap-8 py-12 px-6">
         {/* Brand Logo */}
         <div className="col-start-1 row-start-1 col-span-2 md:col-start-1 md:row-start-1">
-          <Image src={common.logoHorizontal} width={200} height={60} objectFit="contain" />
+          <Image
+            src={common.logoHorizontal}
+            alt="Driflys logo with slogan"
+            width={200}
+            height={60}
+            objectFit="contain"
+          />
         </div>
 
         {/* Links */}
