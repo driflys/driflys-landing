@@ -27,7 +27,7 @@ function Overview() {
               {`We got you covered with all the `}
               <span className="font-black text-blue-700">Features</span>
             </h1>
-            <h2 className="mt-2 text-gray-500 font-semibold text-center mx-auto max-w-xl">
+            <h2 className="mt-2 text-gray-500 text-center mx-auto max-w-3xl md:text-xl">
               Our platform provides all the features from certificates designing to sending to managing, ensuring a
               smooth experience throughout the process
             </h2>
@@ -48,7 +48,7 @@ function Overview() {
           <div className="relative mt-14 mx-auto px-4 w-fit drop-shadow-2xl z-10">
             <Image
               src={FeaturesIllustration}
-              alt="Features section illustration"
+              alt="Driflys Features section illustration"
               width={1200}
               height={800}
               objectFit="contain"
@@ -59,10 +59,10 @@ function Overview() {
         <section className="container mt-16">
           <div className="flex flex-col gap-6 items-center md:flex-row md:justify-between md:items-center">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold leading-normal md:max-w-4xl md:leading-snug">
+              <h1 className="text-4xl font-bold leading-normal md:text-5xl md:max-w-4xl md:leading-snug">
                 Design certificates the way you want
               </h1>
-              <p className="mt-4 text-gray-500">{`You can easily customize the look & feel of your certificates by using our drag n drop builder. You can craft your own design from scratch or continue with our professional templates. `}</p>
+              <p className="mt-4 text-gray-500 md:text-lg">{`You can easily customize the look & feel of your certificates by using our drag n drop builder. You can craft your own design from scratch or continue with our professional templates. `}</p>
             </div>
             <div>
               <Image
@@ -77,8 +77,10 @@ function Overview() {
 
           <div className="mt-16 flex flex-col gap-6 items-center md:flex-row-reverse md:justify-between md:items-center">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold leading-normal md:max-w-4xl md:leading-snug">Deliver with confident</h1>
-              <p className="mt-4 text-gray-500">{`With the help of realtime status tracking, you as the issuer can track the status of issued certificates. So that you can confirm whether the certificates were delivered, pending or an error ocurred.`}</p>
+              <h1 className="text-4xl font-bold leading-normal md:text-5xl md:max-w-4xl md:leading-snug">
+                Deliver with confident
+              </h1>
+              <p className="mt-4 text-gray-500 md:text-lg">{`With the help of realtime status tracking, you as the issuer can track the status of issued certificates. So that you can confirm whether the certificates were delivered, pending or an error occurred.`}</p>
             </div>
             <div>
               <Image
@@ -106,10 +108,10 @@ function Overview() {
         <section className="container mt-16">
           <div className="flex flex-col gap-6 items-center md:flex-row md:justify-between md:items-center">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold leading-normal md:max-w-4xl md:leading-snug">
+              <h1 className="text-4xl font-bold leading-normal md:text-5xl md:max-w-4xl md:leading-snug">
                 Verify the validity with ease
               </h1>
-              <p className="mt-4 text-gray-500">{`Every certificate issued via Driflys has an unique id. Receivers can verify the validity of their certificates 
+              <p className="mt-4 text-gray-500 md:text-lg">{`Every certificate issued via Driflys has an unique id. Receivers can verify the validity of their certificates 
 using the certificate id.`}</p>
             </div>
             <div>
@@ -125,10 +127,10 @@ using the certificate id.`}</p>
 
           <div className="mt-16 flex flex-col gap-6 items-center md:flex-row-reverse md:justify-between md:items-center">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold leading-normal md:max-w-4xl md:leading-snug">
+              <h1 className="text-4xl font-bold leading-normal md:text-5xl md:max-w-4xl md:leading-snug">
                 One click away from social share
               </h1>
-              <p className="mt-4 text-gray-500">{`Receivers can share the certificates instantly in social media with a single click. They can post the certificates or add into the credentials collection of their LinkedIn account or both. `}</p>
+              <p className="mt-4 text-gray-500 md:text-lg">{`Receivers can share the certificates instantly in social media with a single click. They can post the certificates or add into the credentials collection of their LinkedIn account or both. `}</p>
             </div>
             <div>
               <Image
@@ -145,7 +147,7 @@ using the certificate id.`}</p>
         <section className="mt-16 bg-zinc-900">
           <div className="container py-16">
             <h1 className="mx-auto text-4xl font-semibold text-center text-white max-w-3xl md:text-6xl">{`It’s your Brand, Let them see`}</h1>
-            <p className="mt-6 mx-auto text-center text-gray-200 max-w-3xl">{`Ultimately, how the receivers identify their issuer of the digital certificates
+            <p className="mt-6 mx-auto text-center text-gray-200 max-w-3xl md:text-lg">{`Ultimately, how the receivers identify their issuer of the digital certificates
 by the sight of brandings. Driflys know that receivers are familiar with you, not with us.
 That’s why we let you to add your brandings such as logo, name, colors on 
 where the receivers interact with.`}</p>
