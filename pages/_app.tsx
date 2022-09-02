@@ -12,8 +12,6 @@ import { env } from "../constants/env"
 function MyApp({ Component, pageProps }: any) {
   const Layout = Component.layout || (({ children }: any) => <>{children}</>)
 
-  console.log("Google", env.GOOGLE_TAG_MANAGER_ID)
-
   return (
     <>
       <Script id="">

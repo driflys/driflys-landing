@@ -99,6 +99,8 @@ function MainFooter() {
         {/* Copyright */}
         <div className="mt-8 mx-auto col-start-1 row-start-7 col-span-3 md:col-start-1 md:row-start-3 md:col-span-8">
           <div className="mx-auto w-fit flex items-center gap-4">
+            <FooterLink title="Privacy Policy" href="/legal/privacy-policy" />
+            <FooterLink title="Cookies Policy" href="/legal/cookies-policy" />
             <FooterLink title={`Terms & conditions`} href="/legal/terms-conditions" />
             <FooterLink title="Refund policy" href="/legal/refund-policy" />
           </div>

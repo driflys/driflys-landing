@@ -73,7 +73,7 @@ function Verify() {
       }
       toast.error("Invalid Certificate")
     } catch (err) {
-      console.log(err)
+      console.error(err)
       toast.error("Internal Server Error. Please Try Again Later")
     } finally {
       setVerifying(false)

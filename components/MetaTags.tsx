@@ -65,7 +65,7 @@ function MetaTags({ title, metaTitle, description, author, og, twitter, keywords
       <link rel="icon" href="/favicon.ico" />
       <meta charSet="utf-8" />
       <meta name="author" content={author || defaultProps.author} />
-      <meta name="title" content={metaTitle || defaultProps.metaTitle} />
+      <meta name="title" content={metaTitle || title || defaultProps.metaTitle} />
       <meta name="description" content={description || defaultProps.description} />
       <meta name="keywords" content={keywords || defaultProps.keywords} />
 
