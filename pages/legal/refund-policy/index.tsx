@@ -3,7 +3,10 @@ import { MainLayout } from "../../../layouts"
 
 function RefundPolicy() {
   return (
-    <Page title="Refund policy - Driflys">
+    <Page
+      title="Refund policy - Driflys"
+      description="Driflys Refund Policy contains the info about subscription plan cancellation and refund process and conditions"
+    >
       <main className="bg-white">
         <section className="container pt-8">
           <p className="mt-2">
