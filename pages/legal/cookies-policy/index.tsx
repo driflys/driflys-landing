@@ -120,6 +120,7 @@ function CookiesPolicy() {
               <a
                 href="https://support.google.com/accounts/answer/32050"
                 target="_blank"
+                rel="noreferrer"
                 className="ml-2 text-blue-700 underline hover:cursor-pointer"
               >
                 https://support.google.com/accounts/answer/32050
@@ -132,6 +133,7 @@ function CookiesPolicy() {
               <a
                 href="http://support.microsoft.com/kb/278835"
                 target="_blank"
+                rel="noreferrer"
                 className="ml-2 text-blue-700 underline hover:cursor-pointer"
               >
                 http://support.microsoft.com/kb/278835
@@ -144,6 +146,7 @@ function CookiesPolicy() {
               <a
                 href="https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored"
                 target="_blank"
+                rel="noreferrer"
                 className="ml-2 text-blue-700 underline hover:cursor-pointer"
               >
                 https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored
@@ -156,6 +159,7 @@ function CookiesPolicy() {
               <a
                 href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
                 target="_blank"
+                rel="noreferrer"
                 className="ml-2 text-blue-700 underline hover:cursor-pointer"
               >
                 https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
