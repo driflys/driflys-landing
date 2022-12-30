@@ -10,4 +10,7 @@ export const env = {
 
   GA_ID: process.env.NEXT_PUBLIC_GA_ID || "",
   GOOGLE_TAG_MANAGER_ID: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID || "",
+
+  PADDLE_VENDOR_ID: Number(process.env.NEXT_PUBLIC_PADDLE_VENDOR_ID || "0") || 0,
+  PADDLE_ENVIRONMENT: process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT || "",
 }

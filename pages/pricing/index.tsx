@@ -154,8 +154,11 @@ function Pricing() {
   const currentPlan = user?.plan ?? ""
 
   const handlePlanSubscribe = (planName: string, productName: string, duration: string) => {
-    if (planName === "FREE") router.push("https://app.driflys.com/auth/signUp")
-    else router.push("/contact-us")
+    if (planName === "FREE") return router.push("https://app.driflys.com/auth/signUp")
+    return router.push(
+      `https://app.driflys.com/auth/signUp?plan=${planName}&productName=${productName}&duration=${duration}`
+    )
+    // if (!user) return router.push("https://app.driflys.com/auth/login")
   }
 
   return (
